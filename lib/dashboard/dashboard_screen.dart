@@ -192,7 +192,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         Container(
           color: Colors.amber.shade400,
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.05,
+          height: 40,
           padding: EdgeInsets.only(
             top: 12,
             left: 10,

@@ -149,26 +149,24 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Expanded(
+              child: Text(
+                'Account Balance',
+                textAlign: TextAlign.right,
               ),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(
-                child: Text(
-                  'Account Balance',
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           IconButton(

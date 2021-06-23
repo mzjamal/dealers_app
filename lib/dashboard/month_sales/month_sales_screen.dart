@@ -165,26 +165,27 @@ class _MonthSalesScreenState extends State<MonthSalesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(
-                child: Text(
-                  'Sales ' + returnMonth(_now) + ' ' + returnYear(_now),
-                  textAlign: TextAlign.right,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Expanded(
+              child: Text(
+                'Sales ' + returnMonth(_now) + ' ' + returnYear(_now),
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           IconButton(

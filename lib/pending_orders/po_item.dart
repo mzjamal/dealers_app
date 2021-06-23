@@ -64,7 +64,7 @@ class PendingOrderItem extends StatelessWidget {
               child: Text(
                 pendingPlant,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -76,7 +76,7 @@ class PendingOrderItem extends StatelessWidget {
               child: Text(
                 pendingWh,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -88,7 +88,7 @@ class PendingOrderItem extends StatelessWidget {
               child: Text(
                 pendingTotal,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),

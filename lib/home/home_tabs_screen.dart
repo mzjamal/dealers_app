@@ -63,26 +63,27 @@ class _HomeTabsScreenState extends State<HomeTabsScreen> {
     return Scaffold(
       appBar: AppBar(
         //title: Text(_pages[_selectedPageIndex]['title']),
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Text(
-                  _pages[_selectedPageIndex]['title'],
-                  textAlign: TextAlign.right,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Expanded(
+              child: Text(
+                _pages[_selectedPageIndex]['title'],
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           // DropdownButton(

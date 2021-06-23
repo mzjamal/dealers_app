@@ -45,7 +45,7 @@ class Last30DaysOrderItem extends StatelessWidget {
                       child: Text(
                         'Order No: ' + orderNo,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -59,7 +59,7 @@ class Last30DaysOrderItem extends StatelessWidget {
                   child: Text(
                     'Date: ' + orderDate,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -83,7 +83,7 @@ class Last30DaysOrderItem extends StatelessWidget {
                       child: Text(
                         'Product: ' + product,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -95,7 +95,7 @@ class Last30DaysOrderItem extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.25,
                   child: Text(
                     'Qty: ' + qty,
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
               ],

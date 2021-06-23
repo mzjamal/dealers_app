@@ -88,7 +88,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(sonaPysaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -107,7 +107,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                     _thousandSeprator(sonaPysale),
                     //sonaPysale,
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -141,7 +141,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(sonaGysaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -159,7 +159,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(sonaGysale),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -194,7 +194,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(sonaDapysaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -212,7 +212,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(sonaDapysale),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -246,7 +246,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(ffcDapysaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -264,7 +264,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(ffcDapysale),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -298,7 +298,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(sopYsaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -316,7 +316,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(sopYsale),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -350,7 +350,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(mopYsaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -368,7 +368,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(mopYsale),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -402,7 +402,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(zincYsaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -421,7 +421,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                     _thousandSeprator(zincYsale),
                     //zincYsale,
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -455,7 +455,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(boronYsaleDate),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,
@@ -473,7 +473,7 @@ class PreviousYearSaleItem extends StatelessWidget {
                   child: Text(
                     _thousandSeprator(boronYsale),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     softWrap: true,

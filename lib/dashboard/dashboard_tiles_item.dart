@@ -75,7 +75,7 @@ class DashboardTilesItem extends StatelessWidget {
                     title,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       color: Colors.white,
                     ),
                   ),
@@ -130,7 +130,7 @@ class DashboardTilesItem extends StatelessWidget {
               unit,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 12,
                 color: Colors.black,
               ),
             ),

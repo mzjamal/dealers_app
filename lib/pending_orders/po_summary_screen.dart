@@ -108,26 +108,24 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Text(
+                'Pending Orders',
+                textAlign: TextAlign.right,
               ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Text(
-                  'Pending Orders',
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           IconButton(
@@ -196,7 +194,7 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
                           child: Text(
                             'Products',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -211,7 +209,7 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
                           child: Text(
                             'Plant/Port',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -223,7 +221,7 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
                           child: Text(
                             'Warehouse',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -231,11 +229,11 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
                         Container(
                           alignment: Alignment.centerRight,
                           height: 30,
-                          width: MediaQuery.of(context).size.width * 0.22,
+                          width: MediaQuery.of(context).size.width * 0.2,
                           child: Text(
                             'Total',
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

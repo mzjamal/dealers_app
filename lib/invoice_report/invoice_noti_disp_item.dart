@@ -31,7 +31,7 @@ class InvoiceNotiDispItem extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   height: 25,
-                  width: MediaQuery.of(context).size.width * 0.55,
+                  width: MediaQuery.of(context).size.width * 0.75,
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 10,
@@ -57,7 +57,7 @@ class InvoiceNotiDispItem extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   height: 25,
-                  width: MediaQuery.of(context).size.width * 0.65,
+                  width: MediaQuery.of(context).size.width * 0.75,
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 10,
@@ -82,7 +82,7 @@ class InvoiceNotiDispItem extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   height: 25,
-                  width: MediaQuery.of(context).size.width * 0.65,
+                  width: MediaQuery.of(context).size.width * 0.75,
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 10,

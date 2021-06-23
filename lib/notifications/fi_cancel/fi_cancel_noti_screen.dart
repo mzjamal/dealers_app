@@ -206,26 +206,24 @@ class _FiCancelNotificationScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Expanded(
+              child: Text(
+                'Cancelled FI Notif',
+                textAlign: TextAlign.right,
               ),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(
-                child: Text(
-                  'Cancelled FI Notif',
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           IconButton(

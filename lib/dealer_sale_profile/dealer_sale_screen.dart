@@ -149,26 +149,24 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Expanded(
+              child: Text(
+                'Sales Profile',
+                textAlign: TextAlign.right,
               ),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(
-                child: Text(
-                  'Sales Profile',
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           IconButton(
@@ -322,7 +320,7 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
                                         ? Text(
                                             '0',
                                             style: TextStyle(
-                                                fontSize: 24,
+                                                fontSize: 22,
                                                 fontWeight: FontWeight.bold),
                                             textAlign: TextAlign.right,
                                           )
@@ -337,11 +335,11 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
                                             //             .indexOf('.')),
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                                fontSize: 24,
+                                                fontSize: 22,
                                                 fontWeight: FontWeight.bold),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            softWrap: true,
+                                            // overflow: TextOverflow.ellipsis,
+                                            // maxLines: 1,
+                                            // softWrap: true,
                                           ),
                                   ),
                                   SizedBox(
@@ -372,11 +370,11 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
                                             //         .indexOf('.')),
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                                fontSize: 24,
+                                                fontSize: 22,
                                                 fontWeight: FontWeight.bold),
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 1,
-                                            softWrap: true,
+                                            // overflow: TextOverflow.ellipsis,
+                                            // maxLines: 1,
+                                            // softWrap: true,
                                           ),
                                   ),
                                 ],

@@ -248,7 +248,7 @@ class MainDrawer extends StatelessWidget {
               }),
               ListTile(
                 title: Text(
-                  'Sona Dealer App version 1.0.0',
+                  'Sona Dealer App version 1.0.3',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade600,

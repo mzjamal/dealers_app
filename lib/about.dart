@@ -72,7 +72,7 @@ class AboutApplication extends StatelessWidget {
                   height: 30,
                 ),
                 const Text(
-                  'Version 1.0.0',
+                  'Version 1.0.3',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 18),
                 ),

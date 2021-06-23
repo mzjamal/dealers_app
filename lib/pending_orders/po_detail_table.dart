@@ -170,26 +170,24 @@ class _PendingOrdersDetailState extends State<PendingOrdersDetail> {
     pendingTotal = routeArgs['pendingTotal'];
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Text(
+                'Pending Orders',
+                textAlign: TextAlign.right,
               ),
-              SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Text(
-                  'Pending Orders',
-                  textAlign: TextAlign.right,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           IconButton(
@@ -294,7 +292,7 @@ class _PendingOrdersDetailState extends State<PendingOrdersDetail> {
                       ),
                       SingleChildScrollView(
                         child: DataTable(
-                          columnSpacing: 12,
+                          columnSpacing: 10,
                           headingRowHeight: 50,
                           headingRowColor: MaterialStateColor.resolveWith(
                             (states) {
