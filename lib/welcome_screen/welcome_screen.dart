@@ -175,7 +175,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 5,
                   ),
                   Text(
-                    'Version 1.0.6',
+                    'Version 1.0.7',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 16,
@@ -183,7 +183,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
                   // Text(userMessage),
                   // SizedBox(

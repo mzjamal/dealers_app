@@ -248,7 +248,7 @@ class MainDrawer extends StatelessWidget {
               }),
               ListTile(
                 title: Text(
-                  'Sona Dost App version 1.0.6',
+                  'Sona Dost App version 1.0.7',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade600,

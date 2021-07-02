@@ -55,7 +55,7 @@ class Authenticated extends StatelessWidget {
               ),
               child: Container(
                 padding: EdgeInsets.all(5),
-                height: MediaQuery.of(context).size.height * 0.45,
+                height: MediaQuery.of(context).size.height * 0.4,
                 width: MediaQuery.of(context).size.width,
                 child: Scrollbar(
                   controller: _scrollController,
