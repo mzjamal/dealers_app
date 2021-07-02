@@ -33,8 +33,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     super.initState();
   }
 
-  final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDADEALVERIF_SRV/ZSDADealVerif?sap-client=200&\$format=json';
+  // final String url =
+  //     'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDADEALVERIF_SRV/ZSDADealVerif?sap-client=500&\$filter=UUID eq \'' +
+  //         identifier +
+  //         '\'&\$format=json';
 
   @override
   void didChangeDependencies() {
@@ -57,8 +59,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   Future<String> _getJsonData() async {
-    final username = global.Globals.serviceUserNameDev;
-    final password = global.Globals.servicePassDev;
+    final username = global.Globals.serviceUserName;
+    final password = global.Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -69,6 +71,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     };
 
     try {
+      final String url =
+          'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDADEALVERIF_SRV/ZSDADealVerif?sap-client=500&\$filter=UUID eq \'' +
+              identifier +
+              '\'&\$format=json';
+
       var response = await http.get(url, headers: headers);
 
       var jsonData = json.decode(response.body) as Map<String, dynamic>;
@@ -77,18 +84,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['UUID'] == identifier) {
-          item_count = item_count + 1;
-          saleDist = element['SDIST'].toString();
-          name = element['NAME'].toString();
-          deviceID = element['UUID'].toString();
-          //setting global values
-          global.Globals.globalSalesDist = element['SDIST'].toString();
-          global.Globals.dealerCode = element['CUSTCODE'].toString();
-          global.Globals.dealerName = element['NAME'].toString();
-          global.Globals.dealerAddress = element['ADDR'].toString();
-          global.Globals.deviceUUID = element['UUID'].toString();
-        }
+        //if (element['UUID'] == identifier) {
+        item_count = item_count + 1;
+        saleDist = element['SDIST'].toString();
+        name = element['NAME'].toString();
+        deviceID = element['UUID'].toString();
+        //setting global values
+        global.Globals.globalSalesDist = element['SDIST'].toString();
+        global.Globals.dealerCode = element['CUSTCODE'].toString();
+        global.Globals.dealerName = element['NAME'].toString();
+        global.Globals.dealerAddress = element['ADDR'].toString();
+        global.Globals.deviceUUID = element['UUID'].toString();
+        //}
       });
     } catch (error) {
       //print(error);
@@ -148,6 +155,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: Colors.black,
                     ),
                     textAlign: TextAlign.left,
                   ),
@@ -155,10 +163,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 20,
                   ),
                   Text(
-                    'Sona Dealer App',
+                    'Sona Dost',
                     style: TextStyle(
                       //fontWeight: FontWeight.bold,
                       fontSize: 34,
+                      color: Colors.black,
                     ),
                     textAlign: TextAlign.left,
                   ),
@@ -166,9 +175,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 5,
                   ),
                   Text(
-                    'Version 1.0.3',
+                    'Version 1.0.6',
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(
                     height: 20,

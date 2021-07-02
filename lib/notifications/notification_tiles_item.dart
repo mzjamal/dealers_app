@@ -7,6 +7,8 @@ import './fi_new/fi_new_notif_screen.dart';
 import './fi_cancel/fi_cancel_noti_screen.dart';
 import './orders_new/order_new_noti_screen.dart';
 import './invoices_cancel/invoices_noti_screen.dart';
+import './order_cancel/order_can_notif_screen.dart';
+import './other_notif/other_notif_screen.dart';
 
 class NotificationTilesItem extends StatelessWidget {
   final String id;
@@ -40,15 +42,10 @@ class NotificationTilesItem extends StatelessWidget {
               Navigator.of(ctx).pushNamed(NotificationTilesScreen.routeName));
     }
     if (tileID == 'n3') {
-      //Navigator.of(ctx).pushNamed(InvoicesNotificationScreen.routeName);
-      Fluttertoast.showToast(
-          msg: "No notifictions regarding order cancellation at the moment.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.teal.shade800,
-          textColor: Colors.white,
-          fontSize: 18.0);
+      Navigator.of(ctx)
+          .pushNamed(OrderCancelNotifScreen.routeName)
+          .whenComplete(() =>
+              Navigator.of(ctx).pushNamed(NotificationTilesScreen.routeName));
     }
     if (tileID == 'n4') {
       Navigator.of(ctx)
@@ -69,15 +66,10 @@ class NotificationTilesItem extends StatelessWidget {
               Navigator.of(ctx).pushNamed(NotificationTilesScreen.routeName));
     }
     if (tileID == 'n7') {
-      //Navigator.of(ctx).pushNamed(Notifications.routeName);
-      Fluttertoast.showToast(
-          msg: "No other notifictions at the moment.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.teal.shade800,
-          textColor: Colors.white,
-          fontSize: 18.0);
+      Navigator.of(ctx)
+          .pushNamed(OtherNotificationScreen.routeName)
+          .whenComplete(() =>
+              Navigator.of(ctx).pushNamed(NotificationTilesScreen.routeName));
     }
   }
 

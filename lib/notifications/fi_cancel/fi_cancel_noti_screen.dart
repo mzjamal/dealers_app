@@ -27,7 +27,9 @@ class _FiCancelNotificationScreenState
   String todayDate = '';
   String prevDate = '';
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAFINOTCAN2_SRV/ZSDAFiNotCan2?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAFINOTCAN2_SRV/ZSDAFiNotCan2?sap-client=500&\$filter=CUST eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
   var postURL =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDA_SERVICES_SRV/ZSDA_NOTIFICATIONSSet';
 
@@ -81,8 +83,8 @@ class _FiCancelNotificationScreenState
   // }
 
   Future<List<FiCancelNotificatioItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -105,58 +107,58 @@ class _FiCancelNotificationScreenState
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUST'] == Globals.dealerCode) {
-          if (element['RECTYP'] == 'NEW') {
-            FiCancelNotificatioItem newFiItem = FiCancelNotificatioItem(
-              rowID: element['ROWID'],
-              dealer: element['CUST'],
-              fiNumber: element['FINO'],
-              sysFiNumber: element['SFINO'],
-              fiStatus: element['FIINST_STATUS'],
-              fiType: element['FIINST_TYPE'],
-              bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
-              fiDate: _dateFormatter(element['SFIDATE']),
-              bank: element['BANK'],
-              docAmt: _thousandSeprator(element['DOC_AMT']
-                  .toString()
-                  .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
-              readDate: _todayDate(),
-              recType: element['RECTYP'],
-            );
-            //print('hello');
-            cancelFiItems.add(newFiItem);
+        //if (element['CUST'] == Globals.dealerCode) {
+        if (element['RECTYP'] == 'NEW') {
+          FiCancelNotificatioItem newFiItem = FiCancelNotificatioItem(
+            rowID: element['ROWID'],
+            dealer: element['CUST'],
+            fiNumber: element['FINO'],
+            sysFiNumber: element['SFINO'],
+            fiStatus: element['FIINST_STATUS'],
+            fiType: element['FIINST_TYPE'],
+            bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
+            fiDate: _dateFormatter(element['SFIDATE']),
+            bank: element['BANK'],
+            docAmt: _thousandSeprator(element['DOC_AMT']
+                .toString()
+                .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
+            readDate: _todayDate(),
+            recType: element['RECTYP'],
+          );
+          //print('hello');
+          cancelFiItems.add(newFiItem);
 
-            //updating list of new invoice items to save
-            Map<String, String> saveFiItem = {
-              'Dealer': element['CUST'],
-              'Docnumb': element['SFINO'],
-              'Doctype': 'FC',
-              'Readdate': _todayDate()
-            };
-            var jsonBody = json.encode(saveFiItem);
-            canFiItemsToSave.add(jsonBody);
-          } else {
-            // if rec type != NEW
-            FiCancelNotificatioItem newFiItem = FiCancelNotificatioItem(
-              rowID: element['ROWID'],
-              dealer: element['CUST'],
-              fiNumber: element['FINO'],
-              sysFiNumber: element['SFINO'],
-              fiStatus: element['FIINST_STATUS'],
-              fiType: element['FIINST_TYPE'],
-              bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
-              fiDate: _dateFormatter(element['SFIDATE']),
-              bank: element['BANK'],
-              docAmt: _thousandSeprator(element['DOC_AMT']
-                  .toString()
-                  .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
-              readDate: element['READDATE'],
-              recType: element['RECTYP'],
-            );
-            //print('hello');
-            cancelFiItems.add(newFiItem);
-          }
+          //updating list of new invoice items to save
+          Map<String, String> saveFiItem = {
+            'Dealer': element['CUST'],
+            'Docnumb': element['SFINO'],
+            'Doctype': 'FC',
+            'Readdate': _todayDate()
+          };
+          var jsonBody = json.encode(saveFiItem);
+          canFiItemsToSave.add(jsonBody);
+        } else {
+          // if rec type != NEW
+          FiCancelNotificatioItem newFiItem = FiCancelNotificatioItem(
+            rowID: element['ROWID'],
+            dealer: element['CUST'],
+            fiNumber: element['FINO'],
+            sysFiNumber: element['SFINO'],
+            fiStatus: element['FIINST_STATUS'],
+            fiType: element['FIINST_TYPE'],
+            bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
+            fiDate: _dateFormatter(element['SFIDATE']),
+            bank: element['BANK'],
+            docAmt: _thousandSeprator(element['DOC_AMT']
+                .toString()
+                .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
+            readDate: element['READDATE'],
+            recType: element['RECTYP'],
+          );
+          //print('hello');
+          cancelFiItems.add(newFiItem);
         }
+        //}
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -219,8 +221,11 @@ class _FiCancelNotificationScreenState
             ),
             Expanded(
               child: Text(
-                'Cancelled FI Notif',
+                'Cancelled FI',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

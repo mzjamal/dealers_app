@@ -164,6 +164,9 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
               child: Text(
                 'Sales Profile',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

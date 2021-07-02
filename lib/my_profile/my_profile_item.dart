@@ -100,6 +100,200 @@ class MyProfileItem extends StatelessWidget {
     }
   }
 
+  String _salesDist(String distCode) {
+    if (distCode == 'LHR') {
+      return 'Lahore';
+    }
+    if (distCode == 'GUJ') {
+      return 'Gujranwala';
+    }
+    if (distCode == 'SHP') {
+      return 'Sheikhupura';
+    }
+    if (distCode == 'HAF') {
+      return 'Hafizabad';
+    }
+    if (distCode == 'KAS') {
+      return 'Kasur';
+    }
+    if (distCode == 'SKT') {
+      return 'Sialkot';
+    }
+    if (distCode == 'FSL') {
+      return 'Faisalabad';
+    }
+    if (distCode == 'JHG') {
+      return 'Jhang';
+    }
+    if (distCode == 'TTS') {
+      return 'Toba Tek Singh';
+    }
+    if (distCode == 'JRW') {
+      return 'Jaranwala';
+    }
+    if (distCode == 'CHT') {
+      return 'Chiniot';
+    }
+    if (distCode == 'SHW') {
+      return 'Sahiwal';
+    }
+    if (distCode == 'PKP') {
+      return 'Pakpattan';
+    }
+    if (distCode == 'OKR') {
+      return 'Okara';
+    }
+    if (distCode == 'CHW') {
+      return 'Chichawatni';
+    }
+    if (distCode == 'SRG') {
+      return 'Sargodha';
+    }
+    if (distCode == 'MIW') {
+      return 'Mianwali';
+    }
+    if (distCode == 'MBD') {
+      return 'Mandi Bahaudddin';
+    }
+    if (distCode == 'RWP') {
+      return 'Rawalpindi';
+    }
+    if (distCode == 'BHK') {
+      return 'Bhakkar';
+    }
+    if (distCode == 'PSW') {
+      return 'Peshawar';
+    }
+    if (distCode == 'ABT') {
+      return 'Abbotabad';
+    }
+    if (distCode == 'MRD') {
+      return 'Mardan';
+    }
+    if (distCode == 'DIK') {
+      return 'D.I.Khan';
+    }
+    if (distCode == 'MNG') {
+      return 'Mingora';
+    }
+    if (distCode == 'MUL') {
+      return 'Multan';
+    }
+    if (distCode == 'MZG') {
+      return 'Muzafargarh';
+    }
+    if (distCode == 'LDR') {
+      return 'Lodhran';
+    }
+    if (distCode == 'SHJ') {
+      return 'Shujabad';
+    }
+    if (distCode == 'BWP') {
+      return 'Bahawalpur';
+    }
+    if (distCode == 'HSP') {
+      return 'Hasilpur';
+    }
+    if (distCode == 'BWN') {
+      return 'Bahawalnagar';
+    }
+    if (distCode == 'HRN') {
+      return 'Haroonabad';
+    }
+    if (distCode == 'VHR') {
+      return 'Vehari';
+    }
+    if (distCode == 'MCN') {
+      return 'Mian Channu';
+    }
+    if (distCode == 'MLS') {
+      return 'Mailsi';
+    }
+    if (distCode == 'KWL') {
+      return 'Khanewal';
+    }
+    if (distCode == 'DGK') {
+      return 'D. G. Khan';
+    }
+    if (distCode == 'RJN') {
+      return 'Rajanpur';
+    }
+    if (distCode == 'LYH') {
+      return 'Layyah';
+    }
+    if (distCode == 'KAD') {
+      return 'Kot Addu';
+    }
+    if (distCode == 'RYK') {
+      return 'R.Y. Khan';
+    }
+    if (distCode == 'SDQ') {
+      return 'Sadiqabad';
+    }
+    if (distCode == 'KNP') {
+      return 'Khanpur';
+    }
+    if (distCode == 'APE') {
+      return 'A.P.East';
+    }
+    if (distCode == 'HY1') {
+      return 'Hyderabad I';
+    }
+    if (distCode == 'HY2') {
+      return 'Hyderabad II';
+    }
+    if (distCode == 'KHI') {
+      return 'Karachi';
+    }
+    if (distCode == 'MPK') {
+      return 'Mirpur Khas';
+    }
+    if (distCode == 'BDN') {
+      return 'Badin';
+    }
+    if (distCode == 'DGR') {
+      return 'Digri';
+    }
+    if (distCode == 'SKR') {
+      return 'Sukkur';
+    }
+    if (distCode == 'LKN') {
+      return 'Larkana';
+    }
+    if (distCode == 'KHP') {
+      return 'Khairpur';
+    }
+    if (distCode == 'JCB') {
+      return 'Jacobabad';
+    }
+    if (distCode == 'DRK') {
+      return 'Dharki';
+    }
+    if (distCode == 'QTA') {
+      return 'Quetta';
+    }
+    if (distCode == 'DAY') {
+      return 'Dera Allah Yar';
+    }
+    if (distCode == 'NWS') {
+      return 'Nawabshah';
+    }
+    if (distCode == 'SGR') {
+      return 'Sanghar';
+    }
+    if (distCode == 'NSF') {
+      return 'Naushahro Feroze';
+    }
+    if (distCode == 'SDP') {
+      return 'Shahdadpur';
+    }
+    if (distCode == 'DDU') {
+      return 'Dadu';
+    } else {
+      return distCode;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -610,7 +804,7 @@ class MyProfileItem extends StatelessWidget {
               height: 30,
               width: double.infinity,
               child: Text(
-                salesDist + ' - ' + Globals.globalDesignation,
+                salesDist + ' - ' + _salesDist(salesDist),
                 style: TextStyle(fontSize: 24),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,

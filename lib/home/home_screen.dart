@@ -27,7 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final String _urlAgri =
       'https://www.ffc.com.pk/wp-content/uploads/Agri-Experts-Contact-List-2.pdf';
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAHOMETILES_SRV/ZSDAHomeTiles?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAHOMETILES_SRV/ZSDAHomeTiles?sap-client=500&\$filter=CUSTCODE eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -44,8 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<List<HomeScreenItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -64,15 +66,15 @@ class _HomeScreenState extends State<HomeScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUSTCODE'] == Globals.dealerCode) {
-          HomeScreenItem homeItem = HomeScreenItem(
-            element['TILECODE'],
-            element['TILETITLE'],
-            element['SUBTITLE'],
-            element['NOTIFCOUNT'],
-          );
-          homeItems.add(homeItem);
-        }
+        //if (element['CUSTCODE'] == Globals.dealerCode) {
+        HomeScreenItem homeItem = HomeScreenItem(
+          element['TILECODE'],
+          element['TILETITLE'],
+          element['SUBTITLE'],
+          element['NOTIFCOUNT'],
+        );
+        homeItems.add(homeItem);
+        //}
       });
     } catch (error) {
       Fluttertoast.showToast(

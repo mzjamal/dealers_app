@@ -5,34 +5,34 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import './invoices_noti_item.dart';
+import './order_can_noti_item.dart';
 import '../notifications_tiles_screen.dart';
 import '../../globals.dart';
 import '../../colors.dart';
 
-class InvoicesNotificationScreen extends StatefulWidget {
-  static const routeName = '/invNoti';
+class OrderCancelNotifScreen extends StatefulWidget {
+  static const routeName = '/ordCanNotif';
+
   @override
-  _InvoicesNotificationScreenState createState() =>
-      _InvoicesNotificationScreenState();
+  _OrderCancelNotifScreenState createState() => _OrderCancelNotifScreenState();
 }
 
-class _InvoicesNotificationScreenState
-    extends State<InvoicesNotificationScreen> {
+class _OrderCancelNotifScreenState extends State<OrderCancelNotifScreen> {
   var _isInit = true;
-  List<InvoicesNotificationItem> invoiceItems = [];
-  List<String> invItemsToSave = [];
-  NumberFormat formatDTP = NumberFormat('#,###,###');
+  List<OrderCancelNotifItem> cancelOrdItems = [];
+  List<String> ordItemsToSave = [];
+  NumberFormat format = NumberFormat('#,###,###');
   DateFormat formatter = DateFormat();
   String todayDate = '';
   String prevDate = '';
   int _rowId = 1;
   final String url =
-      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAINVNOTNEW_SRV/ZSDAInvNotNew?sap-client=500&\$filter=DEALER eq \'' +
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAORDNOTCAN_SRV/ZSDAOrdNotCan?sap-client=500&\$filter=DEALER eq \'' +
           Globals.dealerCode +
           '\'&\$format=json';
   var postURL =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDA_SERVICES_SRV/ZSDA_NOTIFICATIONSSet';
+
   @override
   void initState() {
     //print('Inside initstate method.');
@@ -64,14 +64,7 @@ class _InvoicesNotificationScreenState
   //   return formattedDate + ' ' + formattedTime;
   // }
 
-  String _dateFormatter(String inDate) {
-    var vDay = inDate.substring(0, 2);
-    var vMonth = inDate.substring(2, 4);
-    var vYear = inDate.substring(4, 8);
-    return vDay + '-' + vMonth + '-' + vYear;
-  }
-
-  Future<List<InvoicesNotificationItem>> _getJsonData() async {
+  Future<List<OrderCancelNotifItem>> _getJsonData() async {
     final username = Globals.serviceUserName;
     final password = Globals.servicePass;
     final credentials = '$username:$password';
@@ -84,7 +77,7 @@ class _InvoicesNotificationScreenState
     };
 
     var now = new DateTime.now();
-    prevDate = formatter.format(now.add(Duration(days: -1)));
+    //prevDate = formatter.format(now.add(Duration(days: -1)));
     todayDate = formatter.format(now);
 
     try {
@@ -98,50 +91,53 @@ class _InvoicesNotificationScreenState
       xdata.forEach((element) {
         //if (element['DEALER'] == Globals.dealerCode) {
         if (element['RECTYP'] == 'NEW') {
-          InvoicesNotificationItem invItem = InvoicesNotificationItem(
+          OrderCancelNotifItem newOrdItem = OrderCancelNotifItem(
             rowID: _rowId.toString(),
             dealer: element['DEALER'],
-            invNumber: element['INVNO'],
-            billingDate: _dateFormatter(element['BILLDATE']),
-            invQty: element['QTY'],
+            orderNumber: element['ORDERNO'],
+            orderDate: element['ORDDATE1'],
+            orderQty: element['QTY'],
             whPlant: element['WAREH'],
             whPlantName: element['NAME'],
             prod: element['PROD'],
             readDate: _todayDate(),
             recType: element['RECTYP'],
+            cancelDate: element['CANCDATE'],
           );
           //print('hello');
-          invoiceItems.add(invItem);
+          cancelOrdItems.add(newOrdItem);
 
-          //updating list of new invoice items to save
-          Map<String, String> saveInvItem = {
+          //updating list of new order items to save
+          Map<String, String> saveOrdItem = {
             'Dealer': element['DEALER'],
-            'Docnumb': element['INVNO'],
-            'Doctype': 'IN',
+            'Docnumb': element['ORDERNO'],
+            'Doctype': 'OC',
             'Readdate': _todayDate()
           };
-          var jsonBody = json.encode(saveInvItem);
-          invItemsToSave.add(jsonBody);
+          var jsonBody = json.encode(saveOrdItem);
+          ordItemsToSave.add(jsonBody);
           _rowId = _rowId + 1;
-        } else {
+        } // if rec type == NEW
+        else {
           // if rec type != NEW
-          InvoicesNotificationItem invItem = InvoicesNotificationItem(
+          OrderCancelNotifItem newOrdItem = OrderCancelNotifItem(
             rowID: _rowId.toString(),
             dealer: element['DEALER'],
-            invNumber: element['INVNO'],
-            billingDate: _dateFormatter(element['BILLDATE']),
-            invQty: element['QTY'],
+            orderNumber: element['ORDERNO'],
+            orderDate: element['ORDDATE1'],
+            orderQty: element['QTY'],
             whPlant: element['WAREH'],
             whPlantName: element['NAME'],
             prod: element['PROD'],
             readDate: element['READDATE'],
             recType: element['RECTYP'],
+            cancelDate: element['CANCDATE'],
           );
 
-          invoiceItems.add(invItem);
+          cancelOrdItems.add(newOrdItem);
           _rowId = _rowId + 1;
         }
-        //}
+        //} // End Dealer IF Statement
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -154,11 +150,12 @@ class _InvoicesNotificationScreenState
           fontSize: 16.0);
     }
     //before return, lets save new notification to table
-    await _saveNewInvoiceNotifications();
-    return invoiceItems;
+    await _saveOrdersNotifications();
+    //await _setNotificationsData();
+    return cancelOrdItems;
   }
 
-  Future<void> _saveNewInvoiceNotifications() async {
+  Future<void> _saveOrdersNotifications() async {
     final username = Globals.serviceUserName;
     final password = Globals.servicePass;
     final credentials = '$username:$password';
@@ -172,7 +169,7 @@ class _InvoicesNotificationScreenState
       HttpHeaders.authorizationHeader: "Basic $encodedCredentials",
     };
 
-    invItemsToSave.forEach((element) async {
+    ordItemsToSave.forEach((element) async {
       //print(element);
       var feedback = await http.post(
         postURL,
@@ -205,7 +202,7 @@ class _InvoicesNotificationScreenState
             ),
             Expanded(
               child: Text(
-                'Inv Notifications',
+                'Cancelled Orders',
                 textAlign: TextAlign.right,
                 style: TextStyle(
                   fontSize: 16,
@@ -248,7 +245,7 @@ class _InvoicesNotificationScreenState
                   //left: 10,
                 ),
                 child: Text(
-                  'انوائس کی اطلاع',
+                  'منسوخ شدہ آرڈرکی اطلاع',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 28,
@@ -275,14 +272,14 @@ class _InvoicesNotificationScreenState
                             ),
                           );
                         } else {
-                          if (invoiceItems.isEmpty) {
+                          if (cancelOrdItems.isEmpty) {
                             return Container(
                               height: 500,
                               width: double.infinity,
                               alignment: Alignment.center,
                               child: Center(
                                 child: Text(
-                                  ' انوائس کے بارے میں فی الحال کوئی اطلاع نہیں ہے۔',
+                                  'منسوخ شدہ آرڈر کے بارے میں فی الحال کوئی اطلاع نہیں ہے۔',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 26,
@@ -296,7 +293,7 @@ class _InvoicesNotificationScreenState
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-                                  ...invoiceItems,
+                                  ...cancelOrdItems,
                                 ],
                               ),
                             );

@@ -54,6 +54,9 @@ import './help/help_kashtkaar_desk_screen.dart';
 import './help/help_ffc_fert_screen.dart';
 import './cash_credit_ratios/cash_credit_ratios_screen.dart';
 import './welcome_screen/welcome_screen.dart';
+import './notifications/order_cancel/order_can_notif_screen.dart';
+import './notifications/other_notif/other_notif_screen.dart';
+import './notifications/other_notif/other_notif_detail_screen.dart';
 
 void main() {
   //Setting device orientation to portrait only
@@ -137,7 +140,7 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
         builder: (context, snapshot) {
           return MaterialApp(
             theme: _light ? _ligthTheme : _darkTheme,
-            title: 'Sona Dealer App',
+            title: 'Sona Dost App',
             darkTheme: _darkTheme,
             //to remove debug banner while running
             debugShowCheckedModeBanner: false,
@@ -213,6 +216,12 @@ class _DarkLightThemeState extends State<DarkLightTheme> {
               HelpFfcFertScreen.routeName: (ctx) => HelpFfcFertScreen(),
               CashCreditRatiosScreen.routeName: (ctx) =>
                   CashCreditRatiosScreen(),
+              OrderCancelNotifScreen.routeName: (ctx) =>
+                  OrderCancelNotifScreen(),
+              OtherNotificationScreen.routeName: (ctx) =>
+                  OtherNotificationScreen(),
+              OtherNotifDetailScreen.routeName: (ctx) =>
+                  OtherNotifDetailScreen(),
             },
           );
         });

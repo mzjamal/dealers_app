@@ -31,6 +31,9 @@ class _FertilizersScreenState extends State<FertilizersScreen> {
               child: Text(
                 'Fertilizers',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

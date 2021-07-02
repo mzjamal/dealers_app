@@ -33,7 +33,9 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
   //var now = new DateTime.now();
   String todayDate = DateFormat().format(new DateTime.now());
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDADBALANCE_SRV/ZSDADBalance?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDADBALANCE_SRV/ZSDADBalance?sap-client=500&\$filter=CUST eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -87,8 +89,8 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
 
   Future<List<AccountBalanceItem>> _getJsonData() async {
     _firstRun = false;
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -108,35 +110,35 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUST'] == Globals.dealerCode) {
-          // FFC FI document
-          if (element['FFBLIND'] == 'N') {
-            AccountBalanceItem balance = AccountBalanceItem(
-              dealerCode: element['CUST'],
-              fiType: element['FITYPE'],
-              fiNumber: element['FINO'],
-              bank: element['BANK'],
-              fiDate: _dateFormatter(element['FIDATE']),
-              balance: _thousandSepratorFfc(element['AMT']
-                  .toString()
-                  .substring(0, element['AMT'].toString().indexOf('.'))),
-            );
-            dealerBal.add(balance);
-          } else {
-            //FFBL FI Document
-            AccountBalanceItem balance = AccountBalanceItem(
-              dealerCode: element['CUST'],
-              fiType: element['FITYPE'],
-              fiNumber: element['FINO'],
-              bank: element['BANK'],
-              fiDate: _dateFormatter(element['FIDATE']),
-              balance: _thousandSepratorFfbl(element['AMT']
-                  .toString()
-                  .substring(0, element['AMT'].toString().indexOf('.'))),
-            );
-            dealerBal.add(balance);
-          }
+        //if (element['CUST'] == Globals.dealerCode) {
+        // FFC FI document
+        if (element['FFBLIND'] == 'N') {
+          AccountBalanceItem balance = AccountBalanceItem(
+            dealerCode: element['CUST'],
+            fiType: element['FITYPE'],
+            fiNumber: element['FINO'],
+            bank: element['BANK'],
+            fiDate: _dateFormatter(element['FIDATE']),
+            balance: _thousandSepratorFfc(element['AMT']
+                .toString()
+                .substring(0, element['AMT'].toString().indexOf('.'))),
+          );
+          dealerBal.add(balance);
+        } else {
+          //FFBL FI Document
+          AccountBalanceItem balance = AccountBalanceItem(
+            dealerCode: element['CUST'],
+            fiType: element['FITYPE'],
+            fiNumber: element['FINO'],
+            bank: element['BANK'],
+            fiDate: _dateFormatter(element['FIDATE']),
+            balance: _thousandSepratorFfbl(element['AMT']
+                .toString()
+                .substring(0, element['AMT'].toString().indexOf('.'))),
+          );
+          dealerBal.add(balance);
         }
+        //}
       });
     } catch (error) {
       //print(error);
@@ -164,6 +166,9 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
               child: Text(
                 'Account Balance',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

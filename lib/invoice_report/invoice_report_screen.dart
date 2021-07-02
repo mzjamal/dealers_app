@@ -26,7 +26,9 @@ class _InvoiceReportScreenState extends State<InvoiceReportScreen> {
       'https://ffcportal.ffc.com.pk:8881/opendocumentnew/invoicereport.jsp?dealer=' +
           Globals.dealerCode;
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAINVOICES_SRV/ZSDAInvoices?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAINVOICES_SRV/ZSDAInvoices?sap-client=500&\$filter=DEALER eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -51,8 +53,8 @@ class _InvoiceReportScreenState extends State<InvoiceReportScreen> {
   }
 
   Future<List<SlidableWidget>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -71,22 +73,22 @@ class _InvoiceReportScreenState extends State<InvoiceReportScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['DEALER'] == Globals.dealerCode) {
-          InvoiceItem invItem = InvoiceItem(
-            invoiceNo: element['INVNO'],
-            invDate: _dateFormatter(element['BILLDATE']),
-            qty: element['QTY'],
-            product: element['PROD'],
-            plant: element['NAME'],
-          );
+        //if (element['DEALER'] == Globals.dealerCode) {
+        InvoiceItem invItem = InvoiceItem(
+          invoiceNo: element['INVNO'],
+          invDate: _dateFormatter(element['BILLDATE']),
+          qty: element['QTY'],
+          product: element['PROD'],
+          plant: element['NAME'],
+        );
 
-          invoiceItems.add(
-            SlidableWidget(
-              child: invItem,
-              invoiceNumber: element['INVNO'],
-            ),
-          );
-        }
+        invoiceItems.add(
+          SlidableWidget(
+            child: invItem,
+            invoiceNumber: element['INVNO'],
+          ),
+        );
+        //}
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -119,8 +121,11 @@ class _InvoiceReportScreenState extends State<InvoiceReportScreen> {
             ),
             Expanded(
               child: Text(
-                'Inv. Report',
+                'Invoice Report',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

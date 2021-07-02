@@ -25,8 +25,11 @@ class _FiNewNotificationScreenState extends State<FiNewNotificationScreen> {
   DateFormat formatter = DateFormat();
   String todayDate = '';
   String prevDate = '';
+  int _rowId = 1;
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAFINOTNEW2_SRV/ZSDAFiNotNew2?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAFINOTNEW2_SRV/ZSDAFiNotNew2?sap-client=500&\$filter=CUST eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
   var postURL =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDA_SERVICES_SRV/ZSDA_NOTIFICATIONSSet';
 
@@ -80,8 +83,8 @@ class _FiNewNotificationScreenState extends State<FiNewNotificationScreen> {
   // }
 
   Future<List<FiNewNotificationItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -104,58 +107,60 @@ class _FiNewNotificationScreenState extends State<FiNewNotificationScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUST'] == Globals.dealerCode) {
-          if (element['RECTYP'] == 'NEW') {
-            FiNewNotificationItem newFiItem = FiNewNotificationItem(
-              rowID: element['ROWID'],
-              dealer: element['CUST'],
-              fiNumber: element['FINO'],
-              sysFiNumber: element['SFINO'],
-              fiStatus: element['FIINST_STATUS'],
-              fiType: element['FIINST_TYPE'],
-              bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
-              fiDate: _dateFormatter(element['SFIDATE']),
-              bank: element['BANK'],
-              docAmt: _thousandSeprator(element['DOC_AMT']
-                  .toString()
-                  .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
-              readDate: _todayDate(),
-              recType: element['RECTYP'],
-            );
-            //print('hello');
-            newFiItems.add(newFiItem);
+        //if (element['CUST'] == Globals.dealerCode) {
+        if (element['RECTYP'] == 'NEW') {
+          FiNewNotificationItem newFiItem = FiNewNotificationItem(
+            rowID: _rowId.toString(),
+            dealer: element['CUST'],
+            fiNumber: element['FINO'],
+            sysFiNumber: element['SFINO'],
+            fiStatus: element['FIINST_STATUS'],
+            fiType: element['FIINST_TYPE'],
+            bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
+            fiDate: _dateFormatter(element['SFIDATE']),
+            bank: element['BANK'],
+            docAmt: _thousandSeprator(element['DOC_AMT']
+                .toString()
+                .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
+            readDate: _todayDate(),
+            recType: element['RECTYP'],
+          );
+          //print('hello');
+          newFiItems.add(newFiItem);
 
-            //updating list of new invoice items to save
-            Map<String, String> saveFiItem = {
-              'Dealer': element['CUST'],
-              'Docnumb': element['SFINO'],
-              'Doctype': 'FN',
-              'Readdate': _todayDate()
-            };
-            var jsonBody = json.encode(saveFiItem);
-            fiItemsToSave.add(jsonBody);
-          } else {
-            // if rec type != NEW
-            FiNewNotificationItem newFiItem = FiNewNotificationItem(
-              rowID: element['ROWID'],
-              dealer: element['CUST'],
-              fiNumber: element['FINO'],
-              sysFiNumber: element['SFINO'],
-              fiStatus: element['FIINST_STATUS'],
-              fiType: element['FIINST_TYPE'],
-              bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
-              fiDate: _dateFormatter(element['SFIDATE']),
-              bank: element['BANK'],
-              docAmt: _thousandSeprator(element['DOC_AMT']
-                  .toString()
-                  .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
-              readDate: element['READDATE'],
-              recType: element['RECTYP'],
-            );
-            //print('hello');
-            newFiItems.add(newFiItem);
-          }
+          //updating list of new invoice items to save
+          Map<String, String> saveFiItem = {
+            'Dealer': element['CUST'],
+            'Docnumb': element['SFINO'],
+            'Doctype': 'FN',
+            'Readdate': _todayDate()
+          };
+          var jsonBody = json.encode(saveFiItem);
+          fiItemsToSave.add(jsonBody);
+          _rowId = _rowId + 1;
+        } else {
+          // if rec type != NEW
+          FiNewNotificationItem newFiItem = FiNewNotificationItem(
+            rowID: _rowId.toString(),
+            dealer: element['CUST'],
+            fiNumber: element['FINO'],
+            sysFiNumber: element['SFINO'],
+            fiStatus: element['FIINST_STATUS'],
+            fiType: element['FIINST_TYPE'],
+            bankDocDate: _dateFormatter(element['EX_DOC_DATE']),
+            fiDate: _dateFormatter(element['SFIDATE']),
+            bank: element['BANK'],
+            docAmt: _thousandSeprator(element['DOC_AMT']
+                .toString()
+                .substring(0, element['DOC_AMT'].toString().indexOf('.'))),
+            readDate: element['READDATE'],
+            recType: element['RECTYP'],
+          );
+          //print('hello');
+          newFiItems.add(newFiItem);
+          _rowId = _rowId + 1;
         }
+        //}
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -218,8 +223,11 @@ class _FiNewNotificationScreenState extends State<FiNewNotificationScreen> {
             ),
             Expanded(
               child: Text(
-                'New FI Notifications',
+                'FI Notifications',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],
@@ -285,14 +293,32 @@ class _FiNewNotificationScreenState extends State<FiNewNotificationScreen> {
                             ),
                           );
                         } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: <Widget>[
-                                ...newFiItems,
-                              ],
-                            ),
-                          );
+                          if (newFiItems.isEmpty) {
+                            return Container(
+                              height: 500,
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              child: Center(
+                                child: Text(
+                                  ' بینک دستاویزات کے بارے میں فی الحال کوئی اطلاع نہیں ہے۔',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 26,
+                                    fontFamily: 'Urdu',
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  ...newFiItems,
+                                ],
+                              ),
+                            );
+                          }
                         }
                       },
                     ),

@@ -25,7 +25,9 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
   num _totalPendingOrders = 0;
   //String todayDate = '';
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAPOSUMM_SRV/ZSDAPOSumm?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAPOSUMM_SRV/ZSDAPOSumm?sap-client=500&\$filter=KUNNR eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
   // final String url =
   //     'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZPO_SRV/ZPOSum?sap-client=500&\$format=json';
 
@@ -61,8 +63,8 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
   }
 
   Future<List<PendingOrderItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -83,17 +85,17 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
 
       xdata.forEach((element) {
         //if (element['SALES_GROUP'] == Globals.globalSalesDist && element['CUSTOMER'] == Globals.dealerCode) {
-        if (element['KUNNR'] == Globals.dealerCode) {
-          PendingOrderItem poItem = PendingOrderItem(
-            prodSrl: element['SRL'],
-            prodName: element['PROD'],
-            pendingPlant: _thousandSeprator(element['PEND_PLANT']),
-            pendingWh: _thousandSeprator(element['PEND_WH']),
-            pendingTotal: _thousandSepratorForTotal(element['TOTAL']),
-          );
+        //if (element['KUNNR'] == Globals.dealerCode) {
+        PendingOrderItem poItem = PendingOrderItem(
+          prodSrl: element['SRL'],
+          prodName: element['PROD'],
+          pendingPlant: _thousandSeprator(element['PEND_PLANT']),
+          pendingWh: _thousandSeprator(element['PEND_WH']),
+          pendingTotal: _thousandSepratorForTotal(element['TOTAL']),
+        );
 
-          poItems.add(poItem);
-        }
+        poItems.add(poItem);
+        //}
       });
     } catch (error) {
       //print(error);
@@ -123,6 +125,9 @@ class _PendingOrderSummaryScreenState extends State<PendingOrderSummaryScreen> {
               child: Text(
                 'Pending Orders',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

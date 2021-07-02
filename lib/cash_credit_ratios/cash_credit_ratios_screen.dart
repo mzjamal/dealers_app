@@ -22,9 +22,9 @@ class _CashCreditRatiosScreenState extends State<CashCreditRatiosScreen> {
   List<CashCreditRatioItem> crdItems = [];
   //8855 for http and 8856 for https for PRD
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDARATIOS_SRV/ZSDARatios(\'' +
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDARATIOS_SRV/ZSDARatios(\'' +
           Globals.dealerCode +
-          '\')?sap-client=200&\$format=json';
+          '\')?sap-client=500&\$format=json';
   @override
   void initState() {
     //print('Inside initstate method.');
@@ -53,8 +53,8 @@ class _CashCreditRatiosScreenState extends State<CashCreditRatiosScreen> {
 
   Future<List<CashCreditRatioItem>> _getJsonData() async {
     //_firstRun = false;
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);

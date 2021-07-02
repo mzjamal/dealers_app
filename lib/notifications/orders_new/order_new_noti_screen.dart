@@ -24,8 +24,11 @@ class _OrdersNewNotifScreenState extends State<OrdersNewNotifScreen> {
   DateFormat formatter = DateFormat();
   String todayDate = '';
   String prevDate = '';
+  int _rowId = 1;
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAORDNOTNEW_SRV/ZSDAOrdNotNew?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAORDNOTNEW_SRV/ZSDAOrdNotNew?sap-client=500&\$filter=DEALER eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
   var postURL =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDA_SERVICES_SRV/ZSDA_NOTIFICATIONSSet';
 
@@ -61,8 +64,8 @@ class _OrdersNewNotifScreenState extends State<OrdersNewNotifScreen> {
   // }
 
   Future<List<OrdersNewNotificationItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -85,51 +88,53 @@ class _OrdersNewNotifScreenState extends State<OrdersNewNotifScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['DEALER'] == Globals.dealerCode) {
-          if (element['RECTYP'] == 'NEW') {
-            OrdersNewNotificationItem newOrdItem = OrdersNewNotificationItem(
-              rowID: element['ROWID'],
-              dealer: element['DEALER'],
-              orderNumber: element['ORDERNO'],
-              orderDate: element['ORDDATE1'],
-              orderQty: element['QTY'],
-              whPlant: element['WAREH'],
-              whPlantName: element['NAME'],
-              prod: element['PROD'],
-              readDate: _todayDate(),
-              recType: element['RECTYP'],
-            );
-            //print('hello');
-            newOrdItems.add(newOrdItem);
+        //if (element['DEALER'] == Globals.dealerCode) {
+        if (element['RECTYP'] == 'NEW') {
+          OrdersNewNotificationItem newOrdItem = OrdersNewNotificationItem(
+            rowID: _rowId.toString(),
+            dealer: element['DEALER'],
+            orderNumber: element['ORDERNO'],
+            orderDate: element['ORDDATE1'],
+            orderQty: element['QTY'],
+            whPlant: element['WAREH'],
+            whPlantName: element['NAME'],
+            prod: element['PROD'],
+            readDate: _todayDate(),
+            recType: element['RECTYP'],
+          );
+          //print('hello');
+          newOrdItems.add(newOrdItem);
 
-            //updating list of new order items to save
-            Map<String, String> saveOrdItem = {
-              'Dealer': element['DEALER'],
-              'Docnumb': element['ORDERNO'],
-              'Doctype': 'ON',
-              'Readdate': _todayDate()
-            };
-            var jsonBody = json.encode(saveOrdItem);
-            ordItemsToSave.add(jsonBody);
-          } // if rec type == NEW
-          else {
-            // if rec type != NEW
-            OrdersNewNotificationItem newOrdItem = OrdersNewNotificationItem(
-              rowID: element['ROWID'],
-              dealer: element['DEALER'],
-              orderNumber: element['ORDERNO'],
-              orderDate: element['ORDDATE1'],
-              orderQty: element['QTY'],
-              whPlant: element['WAREH'],
-              whPlantName: element['NAME'],
-              prod: element['PROD'],
-              readDate: element['READDATE'],
-              recType: element['RECTYP'],
-            );
+          //updating list of new order items to save
+          Map<String, String> saveOrdItem = {
+            'Dealer': element['DEALER'],
+            'Docnumb': element['ORDERNO'],
+            'Doctype': 'ON',
+            'Readdate': _todayDate()
+          };
+          var jsonBody = json.encode(saveOrdItem);
+          ordItemsToSave.add(jsonBody);
+          _rowId = _rowId + 1;
+        } // if rec type == NEW
+        else {
+          // if rec type != NEW
+          OrdersNewNotificationItem newOrdItem = OrdersNewNotificationItem(
+            rowID: _rowId.toString(),
+            dealer: element['DEALER'],
+            orderNumber: element['ORDERNO'],
+            orderDate: element['ORDDATE1'],
+            orderQty: element['QTY'],
+            whPlant: element['WAREH'],
+            whPlantName: element['NAME'],
+            prod: element['PROD'],
+            readDate: element['READDATE'],
+            recType: element['RECTYP'],
+          );
 
-            newOrdItems.add(newOrdItem);
-          }
-        } // End Dealer IF Statement
+          newOrdItems.add(newOrdItem);
+          _rowId = _rowId + 1;
+        }
+        //} // End Dealer IF Statement
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -177,54 +182,6 @@ class _OrdersNewNotifScreenState extends State<OrdersNewNotifScreen> {
     });
   }
 
-  // Future<void> _setNotificationsData() async {
-  //   final username = Globals.serviceUserNameDev;
-  //   final password = Globals.servicePassDev;
-  //   final credentials = '$username:$password';
-  //   final stringToBase64 = utf8.fuse(base64);
-  //   final encodedCredentials = stringToBase64.encode(credentials);
-
-  //   Map<String, String> headers = {
-  //     HttpHeaders.contentTypeHeader: "application/json",
-  //     HttpHeaders.authorizationHeader: "Basic $encodedCredentials",
-  //   };
-
-  //   try {
-  //     var urlNoti =
-  //         'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDATOTNOT_SRV/ZSDATotNot?sap-client=200&\$format=json';
-  //     var response = await http.get(urlNoti, headers: headers);
-
-  //     var jsonData = json.decode(response.body) as Map<String, dynamic>;
-
-  //     var vdata = jsonData['d'];
-  //     var xdata = vdata['results'] as List;
-
-  //     xdata.forEach((element) {
-  //       if (element['CUSTCODE'] == Globals.dealerCode) {
-  //         if (element['NOTTYP'] == 'IN') {
-  //           Globals.newInvoiceNotifications = int.parse(element['NCOUNT']);
-  //           Globals.overAllNotifications =
-  //               Globals.overAllNotifications + int.parse(element['NCOUNT']);
-  //         }
-  //         if (element['NOTTYP'] == 'ON') {
-  //           Globals.newOrderNotifications = int.parse(element['NCOUNT']);
-  //           Globals.overAllNotifications =
-  //               Globals.overAllNotifications + int.parse(element['NCOUNT']);
-  //         }
-  //       }
-  //     });
-  //   } catch (error) {
-  //     Fluttertoast.showToast(
-  //         msg: error,
-  //         toastLength: Toast.LENGTH_LONG,
-  //         gravity: ToastGravity.CENTER,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.teal.shade600,
-  //         textColor: Colors.white,
-  //         fontSize: 16.0);
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -242,8 +199,11 @@ class _OrdersNewNotifScreenState extends State<OrdersNewNotifScreen> {
             ),
             Expanded(
               child: Text(
-                'Orders Notification',
+                'New Orders',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],
@@ -309,14 +269,32 @@ class _OrdersNewNotifScreenState extends State<OrdersNewNotifScreen> {
                             ),
                           );
                         } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: <Widget>[
-                                ...newOrdItems,
-                              ],
-                            ),
-                          );
+                          if (newOrdItems.isEmpty) {
+                            return Container(
+                              height: 500,
+                              width: double.infinity,
+                              alignment: Alignment.center,
+                              child: Center(
+                                child: Text(
+                                  ' آرڈر کے بارے میں فی الحال کوئی اطلاع نہیں ہے۔',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 26,
+                                    fontFamily: 'Urdu',
+                                  ),
+                                ),
+                              ),
+                            );
+                          } else {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  ...newOrdItems,
+                                ],
+                              ),
+                            );
+                          }
                         }
                       },
                     ),

@@ -20,7 +20,9 @@ class _NotificationTilesScreenState extends State<NotificationTilesScreen> {
   var _isInit = true;
   List<NotificationTilesItem> notifItems = [];
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDANOTIFTILES_SRV/ZSDANotifTiles?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDANOTIFTILES_SRV/ZSDANotifTiles?sap-client=500&\$filter=CUSTCODE eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -37,8 +39,8 @@ class _NotificationTilesScreenState extends State<NotificationTilesScreen> {
   }
 
   Future<List<NotificationTilesItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -57,15 +59,15 @@ class _NotificationTilesScreenState extends State<NotificationTilesScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUSTCODE'] == Globals.dealerCode) {
-          NotificationTilesItem notifItem = NotificationTilesItem(
-            element['TILECODE'],
-            element['TILETITLE'],
-            element['SUBTITLE'],
-            element['NOTIFCOUNT'],
-          );
-          notifItems.add(notifItem);
-        }
+        //if (element['CUSTCODE'] == Globals.dealerCode) {
+        NotificationTilesItem notifItem = NotificationTilesItem(
+          element['TILECODE'],
+          element['TILETITLE'],
+          element['SUBTITLE'],
+          element['NOTIFCOUNT'],
+        );
+        notifItems.add(notifItem);
+        //}
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -100,6 +102,9 @@ class _NotificationTilesScreenState extends State<NotificationTilesScreen> {
               child: Text(
                 'Notifications',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

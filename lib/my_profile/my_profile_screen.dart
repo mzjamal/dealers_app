@@ -22,7 +22,9 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   // final String url =
   //     'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZDPROFILENEW_SRV/ZDProfNew?sap-client=500&\$format=json';
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAPROFILE1_SRV/ZSDAProfile1?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAPROFILE1_SRV/ZSDAProfile1?sap-client=500&\$filter=CUSTCODE eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
   @override
   void initState() {
     //print('Inside initstate method.');
@@ -47,10 +49,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   Future<List<MyProfileItem>> _getJsonData() async {
     _firstRun = false;
-    // final username = Globals.serviceUserName;
-    // final password = Globals.servicePass;
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -70,30 +70,30 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUSTCODE'] == Globals.dealerCode) {
-          MyProfileItem myProfile = MyProfileItem(
-            salesZone: element['ZONE'],
-            salesRegion: element['REGION'],
-            salesDist: element['DIST'],
-            dealerCode: element['CUSTCODE'],
-            dealerName: element['NAME'],
-            address: element['ADDR'],
-            contactNumber: element['MOBILE'],
-            proprietorName: element['PROPRIETOR'],
-            setUpDate: _dateFormatter(element['SETUPDAT']),
-            salePointCode: element['SALEPOINT'],
-            salePointDesc: element['SPDESC'],
-            cnicNo: element['CNIC'],
-            filerStatus: element['FILERDESC'],
-            gstRegStatus: element['GSTDESC'],
-            ntnNo: element['NTN'],
-            strnNo: element['STRN'],
-            contactPerson: element['CONTNAME'],
-            contactPerCell: element['CONTCELL'],
-          );
+        //if (element['CUSTCODE'] == Globals.dealerCode) {
+        MyProfileItem myProfile = MyProfileItem(
+          salesZone: element['ZONE'],
+          salesRegion: element['REGION'],
+          salesDist: element['DIST'],
+          dealerCode: element['CUSTCODE'],
+          dealerName: element['NAME'],
+          address: element['ADDR'],
+          contactNumber: element['MOBILE'],
+          proprietorName: element['PROPRIETOR'],
+          setUpDate: _dateFormatter(element['SETUPDAT']),
+          salePointCode: element['SALEPOINT'],
+          salePointDesc: element['SPDESC'],
+          cnicNo: element['CNIC'],
+          filerStatus: element['FILERDESC'],
+          gstRegStatus: element['GSTDESC'],
+          ntnNo: element['NTN'],
+          strnNo: element['STRN'],
+          contactPerson: element['CONTNAME'],
+          contactPerCell: element['CONTCELL'],
+        );
 
-          profiles.add(myProfile);
-        }
+        profiles.add(myProfile);
+        // }
       });
     } catch (error) {
       //print(error);

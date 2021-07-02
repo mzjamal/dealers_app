@@ -35,7 +35,9 @@ class _PendingOrdersDetailState extends State<PendingOrdersDetail> {
   // final String url =
   //     'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZPODETAIL_SRV/ZPODet?sap-client=500&\$format=json';
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAPODET_SRV/ZSDAPODet?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAPODET_SRV/ZSDAPODet?sap-client=500&\$filter=CUSTOMER eq \'000' +
+          Globals.dealerCode +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -68,8 +70,8 @@ class _PendingOrdersDetailState extends State<PendingOrdersDetail> {
 
   Future<List<PendingOrderDetailItem>> _getJsonData() async {
     _firstRun = false;
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -89,8 +91,7 @@ class _PendingOrdersDetailState extends State<PendingOrdersDetail> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUSTOMER'] == '000' + Globals.dealerCode &&
-            element['PROD'] == prodName) {
+        if (element['PROD'] == prodName) {
           PendingOrderDetailItem podItem = PendingOrderDetailItem(
             dealerCode: element['CUSTOMER'],
             dealerName: element['NAME1'],
@@ -104,41 +105,6 @@ class _PendingOrdersDetailState extends State<PendingOrdersDetail> {
           );
 
           podItems.add(podItem);
-
-          // DataRow dataRow = DataRow(
-          //   selected: _rowSelection(),
-          //   cells: <DataCell>[
-          //     DataCell(
-          //       Text(
-          //         element['ORDER_NUMBER'],
-          //         style: TextStyle(
-          //           fontSize: 18,
-          //         ),
-          //       ),
-          //     ),
-          //     DataCell(
-          //       Text(
-          //         _dateFormatter(
-          //           element['ORDER_DATE'],
-          //         ),
-          //         style: TextStyle(
-          //           fontSize: 18,
-          //         ),
-          //       ),
-          //     ),
-          //     DataCell(
-          //       Text(
-          //         _thousandSeprator(
-          //           element['PO_QTY'],
-          //         ),
-          //         style: TextStyle(
-          //           fontSize: 18,
-          //         ),
-          //       ),
-          //     )
-          //   ],
-          // );
-          //poDetail.add(dataRow);
         }
       });
     } catch (error) {
@@ -185,6 +151,9 @@ class _PendingOrdersDetailState extends State<PendingOrdersDetail> {
               child: Text(
                 'Pending Orders',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

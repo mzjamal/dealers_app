@@ -21,11 +21,13 @@ class _DealerTransferPriceState extends State<DealerTransferPrice> {
   List<DTPItem> dtpItems = [];
   NumberFormat formatDTP = NumberFormat('#,###,###');
   final String urlTax =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDATAX_SRV/ZSDATax(\'' +
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDATAX_SRV/ZSDATax(\'' +
           Globals.dealerCode +
-          '\')?sap-client=200&\$format=json';
+          '\')?sap-client=500&\$format=json';
   final String url =
-      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZDTP_SRV/ZDTP?sap-client=500&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZDTP_SRV/ZDTP?sap-client=500&\$filter=SDIST eq \'' +
+          Globals.globalSalesDist +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -55,8 +57,8 @@ class _DealerTransferPriceState extends State<DealerTransferPrice> {
   //   return returnValue;
   // }
   Future<double> _getTaxData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -106,16 +108,16 @@ class _DealerTransferPriceState extends State<DealerTransferPrice> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['SDIST'] == Globals.globalSalesDist) {
-          DTPItem dtpItem = DTPItem(
-            prodName: element['PROD'],
-            applicalbeDate: _dateFormatter(element['FROMDATE']),
-            dtp: element['DTP'],
-            taxRate: taxRates,
-          );
+        //if (element['SDIST'] == Globals.globalSalesDist) {
+        DTPItem dtpItem = DTPItem(
+          prodName: element['PROD'],
+          applicalbeDate: _dateFormatter(element['FROMDATE']),
+          dtp: element['DTP'],
+          taxRate: taxRates,
+        );
 
-          dtpItems.add(dtpItem);
-        }
+        dtpItems.add(dtpItem);
+        //}
       });
     } catch (error) {
       print(error);

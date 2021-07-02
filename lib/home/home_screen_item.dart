@@ -199,7 +199,7 @@ class HomeScreenItem extends StatelessWidget {
               color: Colors.transparent,
               padding: const EdgeInsets.only(
                 top: 10,
-                left: 130,
+                left: 100,
               ),
               width: double.infinity,
               height: 50,
@@ -207,7 +207,7 @@ class HomeScreenItem extends StatelessWidget {
                 notifCount,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 24,
                   color: Colors.red.shade600,
                   fontWeight: FontWeight.bold,
                 ),

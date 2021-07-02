@@ -23,7 +23,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   DashboardTilesItem kpiItem;
 
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAKPISUMMARY_SRV/ZSDAKPISummary?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAKPISUMMARY_SRV/ZSDAKPISummary?sap-client=500&\$filter=CUSTCODE eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -47,8 +49,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Future<List<DashboardTilesItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -67,25 +69,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['CUSTCODE'] == Globals.dealerCode) {
-          if (element['KPICODE'] != '8') {
-            kpiItem = DashboardTilesItem(
-              id: int.parse(element['KPICODE']),
-              title: element['KPIDESC'],
-              subTitle: _thousandSeprator(element['KPIVAL']),
-              unit: element['VUNIT'],
-            );
-            kpiItems.add(kpiItem);
-          } else {
-            kpiItem = DashboardTilesItem(
-              id: int.parse(element['KPICODE']),
-              title: element['KPIDESC'],
-              subTitle: element['KPIVAL'],
-              unit: element['VUNIT'],
-            );
-            kpiItems.add(kpiItem);
-          }
+        //if (element['CUSTCODE'] == Globals.dealerCode) {
+        if (element['KPICODE'] != '8') {
+          kpiItem = DashboardTilesItem(
+            id: int.parse(element['KPICODE']),
+            title: element['KPIDESC'],
+            subTitle: _thousandSeprator(element['KPIVAL']),
+            unit: element['VUNIT'],
+          );
+          kpiItems.add(kpiItem);
+        } else {
+          kpiItem = DashboardTilesItem(
+            id: int.parse(element['KPICODE']),
+            title: element['KPIDESC'],
+            subTitle: element['KPIVAL'],
+            unit: element['VUNIT'],
+          );
+          kpiItems.add(kpiItem);
         }
+        //}
       });
     } catch (error) {
       //print(error);

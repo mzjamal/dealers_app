@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Globals {
-  static String globalSalesDist = 'LHR';
-  static String dealerCode = '1004292';
-  static String dealerName = 'ALI & CO';
-  static String dealerAddress =
-      'TEHSIL MURIDKEY GHALLA MANDI NARANG SHEIKHUPURA';
-  // static String dealerCode = '1004693';
-  // static String dealerName = 'ABDULLAH TRADERS';
-  // static String dealerAddress = 'MAIN G.T.ROAD, WAGHA, DISTRICT LAHORE';
+  static String globalSalesDist = '';
+  static String dealerCode = '';
+  static String dealerName = '';
+  static String dealerAddress = '';
   static String globalSalesOfficerName = '';
-  static String globalDesignation = 'Lahore';
+  static String globalDesignation = '';
   static String deviceUUID = '';
   //username and password to access services
-  static String serviceUserNameDev = 'zjamal';
-  static String servicePassDev = 'Helloall@123';
+  static String serviceUserNameDev = '';
+  static String servicePassDev = '';
   static String serviceUserName = 'BISRVUSR';
   static String servicePass = 'Initial@1';
   //Device width and heigth

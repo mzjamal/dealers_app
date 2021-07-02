@@ -82,16 +82,16 @@ class _PreviousYearSaleScreenState extends State<PreviousYearSaleScreen> {
   }
 
   Future<List<PreviousYearSaleItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
 
     final String url =
-        'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDASALEPREVYRNEW_SRV/ZSDASalePrevYrNew(\'' +
+        'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDASALEPREVYRNEW_SRV/ZSDASalePrevYrNew(\'' +
             Globals.dealerCode +
-            '\')?sap-client=200&\$format=json';
+            '\')?sap-client=500&\$format=json';
 
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: "application/json",

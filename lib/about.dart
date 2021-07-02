@@ -56,7 +56,7 @@ class AboutApplication extends StatelessWidget {
                   height: 20,
                 ),
                 const Text(
-                  'Sona Dealer App',
+                  'Sona Dost App',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 28),
                   textAlign: TextAlign.left,
                 ),
@@ -72,7 +72,7 @@ class AboutApplication extends StatelessWidget {
                   height: 30,
                 ),
                 const Text(
-                  'Version 1.0.3',
+                  'Version 1.0.6',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 18),
                 ),

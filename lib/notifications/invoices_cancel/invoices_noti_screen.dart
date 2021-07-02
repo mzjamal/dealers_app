@@ -27,7 +27,9 @@ class _InvoicesCanNotificationScreenState
   String todayDate = '';
   //String prevDate = '';
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAINVNOTCAN_SRV/ZSDAInvNotCan?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAINVNOTCAN_SRV/ZSDAInvNotCan?sap-client=500&\$filter=DEALER eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
   var postURL =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDA_SERVICES_SRV/ZSDA_NOTIFICATIONSSet';
   @override
@@ -69,8 +71,8 @@ class _InvoicesCanNotificationScreenState
   }
 
   Future<List<InvoicesNotificationItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -93,52 +95,52 @@ class _InvoicesCanNotificationScreenState
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['DEALER'] == Globals.dealerCode) {
-          if (element['RECTYP'] == 'NEW') {
-            InvoicesNotificationItem invItem = InvoicesNotificationItem(
-              rowID: element['ROWID'],
-              dealer: element['DEALER'],
-              invNumber: element['INVNO'],
-              billingDate: _dateFormatter(element['BILLDATE']),
-              cancelDate: _dateFormatter(element['CANCELDAT']),
-              invQty: element['QTY'],
-              whPlant: element['WAREH'],
-              whPlantName: element['NAME'],
-              prod: element['PROD'],
-              readDate: _todayDate(),
-              recType: element['RECTYP'],
-            );
-            //print('hello');
-            invoiceItems.add(invItem);
+        //if (element['DEALER'] == Globals.dealerCode) {
+        if (element['RECTYP'] == 'NEW') {
+          InvoicesNotificationItem invItem = InvoicesNotificationItem(
+            rowID: element['ROWID'],
+            dealer: element['DEALER'],
+            invNumber: element['INVNO'],
+            billingDate: _dateFormatter(element['BILLDATE']),
+            cancelDate: _dateFormatter(element['CANCELDAT']),
+            invQty: element['QTY'],
+            whPlant: element['WAREH'],
+            whPlantName: element['NAME'],
+            prod: element['PROD'],
+            readDate: _todayDate(),
+            recType: element['RECTYP'],
+          );
+          //print('hello');
+          invoiceItems.add(invItem);
 
-            //updating list of new invoice items to save
-            Map<String, String> saveInvItem = {
-              'Dealer': element['DEALER'],
-              'Docnumb': element['INVNO'],
-              'Doctype': 'IC',
-              'Readdate': _todayDate()
-            };
-            var jsonBody = json.encode(saveInvItem);
-            invItemsToSave.add(jsonBody);
-          } else {
-            // if rec type != NEW
-            InvoicesNotificationItem invItem = InvoicesNotificationItem(
-              rowID: element['ROWID'],
-              dealer: element['DEALER'],
-              invNumber: element['INVNO'],
-              billingDate: _dateFormatter(element['BILLDATE']),
-              cancelDate: _dateFormatter(element['CANCELDAT']),
-              invQty: element['QTY'],
-              whPlant: element['WAREH'],
-              whPlantName: element['NAME'],
-              prod: element['PROD'],
-              readDate: element['READDATE'],
-              recType: element['RECTYP'],
-            );
+          //updating list of new invoice items to save
+          Map<String, String> saveInvItem = {
+            'Dealer': element['DEALER'],
+            'Docnumb': element['INVNO'],
+            'Doctype': 'IC',
+            'Readdate': _todayDate()
+          };
+          var jsonBody = json.encode(saveInvItem);
+          invItemsToSave.add(jsonBody);
+        } else {
+          // if rec type != NEW
+          InvoicesNotificationItem invItem = InvoicesNotificationItem(
+            rowID: element['ROWID'],
+            dealer: element['DEALER'],
+            invNumber: element['INVNO'],
+            billingDate: _dateFormatter(element['BILLDATE']),
+            cancelDate: _dateFormatter(element['CANCELDAT']),
+            invQty: element['QTY'],
+            whPlant: element['WAREH'],
+            whPlantName: element['NAME'],
+            prod: element['PROD'],
+            readDate: element['READDATE'],
+            recType: element['RECTYP'],
+          );
 
-            invoiceItems.add(invItem);
-          }
-        } // MAIN IF FOR DEALER CODE
+          invoiceItems.add(invItem);
+        }
+        //} // MAIN IF FOR DEALER CODE
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -202,8 +204,11 @@ class _InvoicesCanNotificationScreenState
             ),
             Expanded(
               child: Text(
-                'Cancelled Inv Notif',
+                'Cancelled Inv.',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

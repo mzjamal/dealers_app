@@ -24,6 +24,9 @@ class HelpSaleOrderReportScreen extends StatelessWidget {
               child: Text(
                 'Help Topics',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

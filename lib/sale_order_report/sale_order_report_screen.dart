@@ -21,11 +21,15 @@ class _SaleOrderReportScreenState extends State<SaleOrderReportScreen> {
   var _isInit = true;
   List<SaleOrderItem> orderItems = [];
   String _totalOrders = '';
+  int _totalOrd = 0;
   NumberFormat formatDTP = NumberFormat('#,###,###');
   final _urlReport =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/ordersreport.jsp';
+      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/ordersreport.jsp?dealer=' +
+          Globals.dealerCode;
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAORDERSS_SRV/ZSDAOrderss?sap-client=200&\$format=json';
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAORDERSS_SRV/ZSDAOrderss?sap-client=500&\$filter=DEALER eq \'' +
+          Globals.dealerCode +
+          '\'&\$format=json';
 
   @override
   void initState() {
@@ -50,8 +54,8 @@ class _SaleOrderReportScreenState extends State<SaleOrderReportScreen> {
   }
 
   Future<List<SaleOrderItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -70,20 +74,22 @@ class _SaleOrderReportScreenState extends State<SaleOrderReportScreen> {
       var xdata = vdata['results'] as List;
 
       xdata.forEach((element) {
-        if (element['DEALER'] == Globals.dealerCode) {
-          SaleOrderItem orderItem = SaleOrderItem(
-            orderNo: element['ORDERNO'],
-            orderDate: _dateFormatter(element['CDATE']),
-            qty: element['QTY'],
-            product: element['PROD'],
-            plant: element['NAME'],
-            isShipped: element['DELIVERED'],
-          );
+        //if (element['DEALER'] == Globals.dealerCode) {
+        SaleOrderItem orderItem = SaleOrderItem(
+          orderNo: element['ORDERNO'],
+          orderDate: _dateFormatter(element['CDATE']),
+          qty: element['QTY'],
+          product: element['PROD'],
+          plant: element['NAME'],
+          isShipped: element['DELIVERED'],
+        );
 
-          _totalOrders = element['ROWID'];
+        _totalOrd = _totalOrd + 1;
 
-          orderItems.add(orderItem);
-        }
+        // _totalOrders = element['ROWID'];
+
+        orderItems.add(orderItem);
+        //}
       });
     } catch (error) {
       Fluttertoast.showToast(
@@ -96,6 +102,7 @@ class _SaleOrderReportScreenState extends State<SaleOrderReportScreen> {
           fontSize: 16.0);
     }
     //print('orders = ' + _totalOrders);
+    _totalOrders = _totalOrd.toString();
     return orderItems;
   }
 
@@ -118,6 +125,9 @@ class _SaleOrderReportScreenState extends State<SaleOrderReportScreen> {
               child: Text(
                 'Orders Report',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

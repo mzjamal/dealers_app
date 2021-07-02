@@ -29,8 +29,11 @@ class _ShowOtherTilesState extends State<ShowOtherTiles> {
             ),
             Expanded(
               child: Text(
-                'Other Options',
+                'More Options',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],

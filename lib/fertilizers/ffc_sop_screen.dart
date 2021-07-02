@@ -23,6 +23,9 @@ class FfcSopFertScreen extends StatelessWidget {
               child: Text(
                 'Fertilizers',
                 textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
           ],
