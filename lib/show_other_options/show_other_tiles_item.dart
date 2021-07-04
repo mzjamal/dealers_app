@@ -195,9 +195,9 @@ class ShowOtherTilesItem extends StatelessWidget {
             Container(
               alignment: Alignment.topCenter,
               color: Colors.transparent,
-              padding: const EdgeInsets.only(top: 10),
-              width: MediaQuery.of(context).size.width * 0.6,
-              height: MediaQuery.of(context).size.height * 0.062,
+              padding: const EdgeInsets.only(top: 5),
+              // width: MediaQuery.of(context).size.width * 0.6,
+              // height: MediaQuery.of(context).size.height * 0.052,
               child: Text(
                 subTitle,
                 textAlign: TextAlign.center,

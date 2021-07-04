@@ -60,7 +60,7 @@ class _KashtkaarDeskScreenState extends State<KashtkaarDeskScreen> {
           ),
           Container(
             padding: EdgeInsets.only(
-              top: 80,
+              top: 90,
               left: 15,
               right: 15,
             ),
@@ -81,8 +81,8 @@ class _KashtkaarDeskScreenState extends State<KashtkaarDeskScreen> {
                   .toList(),
               //Sliver are scrollable areas on screen in Flutter
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 400,
-                childAspectRatio: 8 / 2,
+                maxCrossAxisExtent: MediaQuery.of(context).size.width,
+                childAspectRatio: 8 / 1.8,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
@@ -90,7 +90,7 @@ class _KashtkaarDeskScreenState extends State<KashtkaarDeskScreen> {
           ),
           Container(
             padding: EdgeInsets.only(
-              top: 50,
+              top: 60,
             ),
             width: double.infinity,
             child: Text(

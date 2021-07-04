@@ -29,7 +29,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   void initState() {
-    initUniqueIdentifierState();
+    //initUniqueIdentifierState();
     super.initState();
   }
 
@@ -71,6 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     };
 
     try {
+      await initUniqueIdentifierState();
       final String url =
           'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDADEALVERIF_SRV/ZSDADealVerif?sap-client=500&\$filter=UUID eq \'' +
               identifier +
@@ -175,7 +176,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 5,
                   ),
                   Text(
-                    'Version 1.0.7',
+                    'Version 1.0.9',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 16,
