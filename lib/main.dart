@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:get_it/get_it.dart';
 import './home/home_tabs_screen.dart';
 import './about.dart';
 import './pending_orders/po_summary_screen.dart';
@@ -58,7 +60,21 @@ import './notifications/order_cancel/order_can_notif_screen.dart';
 import './notifications/other_notif/other_notif_screen.dart';
 import './notifications/other_notif/other_notif_detail_screen.dart';
 
+//code to make calls
+class CallService {
+  void call(String cellNumber) {
+    launch("tel:$cellNumber");
+  }
+}
+
+GetIt locator = GetIt.asNewInstance();
+
+void set() {
+  locator.registerSingleton(CallService());
+}
+
 void main() {
+  set();
   //Setting device orientation to portrait only
   //On some devices this setting might require as of new Flutter version
   WidgetsFlutterBinding.ensureInitialized();

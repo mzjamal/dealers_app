@@ -173,8 +173,8 @@ class ShowOtherTilesItem extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               padding: const EdgeInsets.only(top: 5),
               color: Colors.transparent,
-              width: MediaQuery.of(context).size.width * 0.4,
-              height: MediaQuery.of(context).size.height * 0.03,
+              width: double.infinity,
+              height: 25,
               child: _displayIcon(context, id),
             ),
             Container(
@@ -182,7 +182,7 @@ class ShowOtherTilesItem extends StatelessWidget {
               color: Colors.transparent,
               padding: const EdgeInsets.only(top: 35),
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.08,
+              height: 55,
               child: Text(
                 title,
                 textAlign: TextAlign.center,
@@ -195,9 +195,9 @@ class ShowOtherTilesItem extends StatelessWidget {
             Container(
               alignment: Alignment.topCenter,
               color: Colors.transparent,
-              padding: const EdgeInsets.only(top: 5),
-              // width: MediaQuery.of(context).size.width * 0.6,
-              // height: MediaQuery.of(context).size.height * 0.052,
+              padding: const EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: 45,
               child: Text(
                 subTitle,
                 textAlign: TextAlign.center,

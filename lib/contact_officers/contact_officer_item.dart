@@ -1,3 +1,4 @@
+import 'package:dealers_app/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ class ContactOffcierItem extends StatelessWidget {
   final String agriOfficerName;
   final String agriOfficerContact;
   final String agriOfficeEmail;
+  final CallService _service = locator<CallService>();
 
   ContactOffcierItem({
     @required this.saleOfficerName,
@@ -131,7 +133,8 @@ class ContactOffcierItem extends StatelessWidget {
                         width: 70,
                         child: TextButton.icon(
                           onPressed: () {
-                            launch(('tel://${' ' + saleOfficerContact + ''}'));
+                            _service.call(saleOfficerContact);
+                            //launch(('tel://${' ' + saleOfficerContact + ''}'));
                           },
                           icon: Icon(
                             Icons.phone_in_talk_outlined,
@@ -341,7 +344,8 @@ class ContactOffcierItem extends StatelessWidget {
                         width: 70,
                         child: TextButton.icon(
                           onPressed: () {
-                            launch(('tel://${' ' + agriOfficerContact + ''}'));
+                            _service.call(agriOfficerContact);
+                            //launch(('tel://${' ' + agriOfficerContact + ''}'));
                           },
                           icon: Icon(
                             Icons.phone_in_talk_outlined,

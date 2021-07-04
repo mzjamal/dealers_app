@@ -124,7 +124,7 @@ class _ShowOtherTilesState extends State<ShowOtherTiles> {
                 //Sliver are scrollable areas on screen in Flutter
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 200,
-                  childAspectRatio: 2.5 / 2,
+                  childAspectRatio: 2.8 / 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),
