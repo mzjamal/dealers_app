@@ -65,6 +65,14 @@ class CallService {
   void call(String cellNumber) {
     launch("tel:$cellNumber");
   }
+
+  void sendMsg(String cellNumber) {
+    launch("sms:$cellNumber");
+  }
+
+  void sendEmail(String emailAddr) {
+    launch("mailto:$emailAddr");
+  }
 }
 
 GetIt locator = GetIt.asNewInstance();
