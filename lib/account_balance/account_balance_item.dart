@@ -36,7 +36,7 @@ class AccountBalanceItem extends StatelessWidget {
                   ),
                   alignment: Alignment.centerLeft,
                   height: 40,
-                  width: MediaQuery.of(context).size.width * 0.13,
+                  width: MediaQuery.of(context).size.width * 0.14,
                   child: Text(
                     fiType,
                     style: TextStyle(

@@ -297,7 +297,7 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
                   child: const Text(
                     '[Disclaimer: Subject to confirmation & verification]',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                 ),
