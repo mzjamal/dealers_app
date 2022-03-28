@@ -72,12 +72,12 @@ class AboutApplication extends StatelessWidget {
                   height: 30,
                 ),
                 const Text(
-                  'Version 1.0.10',
+                  'Version 1.0.11',
                   textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const Text(
                   'First Release: July, 2021',
@@ -85,13 +85,13 @@ class AboutApplication extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                // const Text(
-                //   'Rolled out to HOSDs: Jan, 2021',
-                //   textAlign: TextAlign.left,
-                //   style: TextStyle(fontSize: 16),
-                // ),
+                const Text(
+                  'Version 1.1.0 (April 2022)',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 16),
+                ),
                 SizedBox(
                   height: 30,
                 ),

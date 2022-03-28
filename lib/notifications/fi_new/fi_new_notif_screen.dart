@@ -172,7 +172,7 @@ class _FiNewNotificationScreenState extends State<FiNewNotificationScreen> {
           textColor: Colors.white,
           fontSize: 16.0);
     }
-    _saveNewFiNotifications();
+    //_saveNewFiNotifications();
     return newFiItems;
   }
 

@@ -15,11 +15,11 @@ class MainDrawer extends StatelessWidget {
   final url =
       'https://ffcportal.ffc.com.pk:8881/opendocumentnew/ZPList.jsp?SDIST=' +
           Globals.globalSalesDist;
-  final _urlInvReport =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/invoicereport.jsp?dealer=' +
-          Globals.dealerCode;
-  final _urlOrdReport =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/ordersreport.jsp';
+  // final _urlInvReport =
+  //     'https://ffcportal.ffc.com.pk:8881/opendocumentnew/invoicereport.jsp?dealer=' +
+  //         Globals.dealerCode;
+  // final _urlOrdReport =
+  //     'https://ffcportal.ffc.com.pk:8881/opendocumentnew/ordersreport.jsp';
   Widget buildListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
       tileColor: Colors.transparent,
@@ -248,7 +248,7 @@ class MainDrawer extends StatelessWidget {
               }),
               ListTile(
                 title: Text(
-                  'Sona Dost :: version 1.0.10',
+                  'Sona Dost :: version 1.1.0',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade600,

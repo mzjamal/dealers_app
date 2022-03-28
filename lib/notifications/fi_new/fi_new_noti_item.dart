@@ -37,6 +37,38 @@ class FiNewNotificationItem extends StatelessWidget {
     }
   }
 
+  String _notifText() {
+    if (fiType == 'OFT' || fiType == 'OTC') {
+      return 'Your IBFT for Rs. ' +
+          docAmt +
+          ' from bank ' +
+          bank +
+          ' has been successful on ' +
+          fiDate +
+          ' for new sales order.';
+    } else if (fiType == 'ICRC') {
+      return 'Your IBFT for Rs. ' +
+          docAmt +
+          ' from bank ' +
+          bank +
+          ' has been successful on ' +
+          fiDate +
+          ' for sales order clearing.';
+    } else {
+      return 'Your ' +
+          fiType +
+          ' number ' +
+          fiNumber +
+          ', Bank ' +
+          bank +
+          ' of ' +
+          bankDocDate +
+          ', Amount Rs. ' +
+          docAmt +
+          ' has been physically received at warehouse. Disclaimer: Amounts are subject to verification by Bank';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -107,17 +139,7 @@ class FiNewNotificationItem extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Your ' +
-                            fiType +
-                            ' number ' +
-                            fiNumber +
-                            ', Bank ' +
-                            bank +
-                            ' of ' +
-                            bankDocDate +
-                            ', Amount Rs. ' +
-                            docAmt +
-                            ' has been physically received at warehouse. Disclaimer: Amounts are subject to verification by Bank',
+                        _notifText(),
                         style: TextStyle(
                           fontSize: 18,
                           color: _fontColor(),

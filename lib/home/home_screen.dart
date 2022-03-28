@@ -496,7 +496,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: Alignment.center,
                           child: Center(
                             child: CircularProgressIndicator(
-                              backgroundColor: Colors.black,
+                              color: Colors.black,
                             ),
                           ),
                         );

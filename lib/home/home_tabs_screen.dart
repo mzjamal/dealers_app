@@ -85,6 +85,7 @@ class _HomeTabsScreenState extends State<HomeTabsScreen> {
             ),
           ],
         ),
+        backgroundColor: Colors.teal.shade800,
         actions: <Widget>[
           // DropdownButton(
           //   underline: Container(),

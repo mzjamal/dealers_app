@@ -58,7 +58,7 @@ class HelpContentScreen extends StatelessWidget {
                   child: Text(
                     'Help Topics',
                     style: TextStyle(
-                      fontSize: 32,
+                      fontSize: 24,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -75,7 +75,7 @@ class HelpContentScreen extends StatelessWidget {
                       'مددکےعنوانات',
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 24,
                         fontFamily: 'Urdu',
                       ),
                     ),

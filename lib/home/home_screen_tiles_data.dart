@@ -36,7 +36,7 @@ var homeTiles = [
     title: 'Notifications',
     subTitle: 'اطلاعات',
     tileColor: MyColors.homeTileColor1,
-    notifCount: Globals.overAllNotifications.toString(),
+    notifCount: '',
   ),
   HomeScreenTile(
     id: 't6',

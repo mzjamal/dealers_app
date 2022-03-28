@@ -176,7 +176,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 5,
                   ),
                   Text(
-                    'Version 1.0.10',
+                    'Version 1.1.0',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 16,
@@ -206,7 +206,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 alignment: Alignment.center,
                                 child: Center(
                                   child: CircularProgressIndicator(
-                                    backgroundColor: Colors.black,
+                                    color: Colors.black,
                                   ),
                                 ),
                               );

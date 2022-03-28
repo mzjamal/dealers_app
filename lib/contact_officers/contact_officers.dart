@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 import '../home/home_tabs_screen.dart';
 import '../globals.dart';
 import '../colors.dart';
@@ -56,18 +56,23 @@ class _ContactOfficersState extends State<ContactOfficers> {
       var response = await http.get(url, headers: headers);
 
       var jsonData = json.decode(response.body) as Map<String, dynamic>;
-      var vdata = jsonData['d'];
+      var vdata = jsonData["d"];
+      // print("inside11");
+      // print(vdata['SONAME']);
+      // print(vdata['SOCELL']);
+      // print(vdata['DISTEMAIL']);
+      // print(vdata['ASONAME']);
+      // print(vdata['ASOCELL']);
+      // print(vdata['ATOEMAIL']);
 
-      ContactOffcierItem contactItem = ContactOffcierItem(
-        saleOfficerName: vdata['SONAME'],
-        saleOfficerContact: vdata['SOCELL'],
-        saleOfficeEmail: vdata['DISTEMAIL'],
-        agriOfficerName: vdata['ASONAME'],
-        agriOfficerContact: vdata['ASOCELL'],
-        agriOfficeEmail: vdata['ATOEMAIL'],
-      );
-
-      contactOfficers.add(contactItem);
+      ContactOffcierItem newContactItem = ContactOffcierItem(
+          saleOfficerName: vdata['SONAME'],
+          saleOfficerContact: vdata['SOCELL'],
+          saleOfficeEmail: vdata['DISTEMAIL'],
+          agriOfficerName: vdata['ASONAME'],
+          agriOfficerContact: vdata['ASOCELL'],
+          agriOfficeEmail: vdata['ATOEMAIL']);
+      contactOfficers.add(newContactItem);
     } catch (error) {
       //print(error);
     }
@@ -155,7 +160,7 @@ class _ContactOfficersState extends State<ContactOfficers> {
                 'افسران کو فون کرنے کے لئے سبز نشان پر یا پیغام بھیجنے کے لئے نیلے نشان پر یا ای میل بھیجنے کے لئے نارنجی نشان پر ٹیپ کریں۔',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 20,
                   color: Colors.black,
                   fontFamily: 'Urdu',
                 ),
@@ -178,7 +183,7 @@ class _ContactOfficersState extends State<ContactOfficers> {
                           alignment: Alignment.center,
                           child: Center(
                             child: CircularProgressIndicator(
-                              backgroundColor: Colors.black,
+                              color: Colors.black,
                             ),
                           ),
                         );

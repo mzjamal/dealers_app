@@ -18,6 +18,7 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
   var _isInit = true;
   String dCode;
   List<DealerSaleItem> dealerSaleItems = [];
+  var _now = new DateTime.now();
   NumberFormat formatSale = NumberFormat('#,###,###.0##', 'en_US');
   NumberFormat formatGrossSale = NumberFormat('#,###,###');
   String dealerCode;
@@ -54,6 +55,14 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
     var returnValue = formatSale.parse(value.toString());
     _totalMonthSale = _totalMonthSale + returnValue;
     return returnValue.toString();
+  }
+
+  String returnMonth(DateTime date) {
+    return new DateFormat.MMM().format(date);
+  }
+
+  String _returnYear(DateTime date) {
+    return new DateFormat.y().format(date);
   }
 
   String _thousandSepratorYSale(dynamic value) {
@@ -237,8 +246,8 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
                           alignment: Alignment.center,
                           height: 30,
                           width: MediaQuery.of(context).size.width * 0.22,
-                          child: const Text(
-                            'June Sales',
+                          child: Text(
+                            returnMonth(_now) + ' Sales',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -249,8 +258,8 @@ class _DealerSaleScreenState extends State<DealerSaleScreen> {
                           alignment: Alignment.center,
                           height: 30,
                           width: MediaQuery.of(context).size.width * 0.3,
-                          child: const Text(
-                            'Sales 2021',
+                          child: Text(
+                            'Sales ' + _returnYear(_now),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,

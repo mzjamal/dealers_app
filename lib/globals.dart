@@ -29,4 +29,7 @@ class Globals {
   //email IDs of HOSD and ATO
   static String emailAddrHosd = '';
   static String emailAddrAto = '';
+
+  // notifications count
+  //static String notifCount = '';
 }

@@ -186,7 +186,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             'مزید تفصیل کے لئے کسی بھی ٹائل پر ٹیپ کریں',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 22,
+              fontSize: 20,
               fontFamily: 'Urdu',
             ),
           ),

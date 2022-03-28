@@ -1,6 +1,6 @@
 import 'package:dealers_app/notifications/notifications_tiles_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 import '../globals.dart';
 import './invoices_new/invoices_noti_screen.dart';
 import './fi_new/fi_new_notif_screen.dart';
