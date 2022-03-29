@@ -8,6 +8,7 @@ import '../invoice_report/invoice_report_screen.dart';
 import '../sale_order_print/sale_order_print_screen.dart';
 import '../invoice_print/invoice_print_screen.dart';
 import '../tax_certificate/tax_certificate_screen.dart';
+import '../registration_forms/registration_forms.dart';
 import '../fertilizers/fert_screen.dart';
 
 class ShowOtherTilesItem extends StatelessWidget {
@@ -27,7 +28,7 @@ class ShowOtherTilesItem extends StatelessWidget {
       Navigator.of(ctx).pushNamed(DealerSaleScreen.routeName);
     }
     if (tileID == 'x2') {
-      Navigator.of(ctx).pushNamed(TaxCertificateScreen.routeName);
+      Navigator.of(ctx).pushNamed(RegistrationForms.routeName);
     }
     if (tileID == 'x3') {
       Navigator.of(ctx).pushNamed(SaleOrderReportScreen.routeName);
@@ -65,7 +66,7 @@ class ShowOtherTilesItem extends StatelessWidget {
     if (tileID == 'x2') {
       //account balance
       return Icon(
-        Icons.description_outlined,
+        Icons.format_align_center_rounded,
         color: _iconColor,
         size: _iconFontSize,
       );
@@ -182,7 +183,7 @@ class ShowOtherTilesItem extends StatelessWidget {
               color: Colors.transparent,
               padding: const EdgeInsets.only(top: 35),
               width: double.infinity,
-              height: 55,
+              height: 58,
               child: Text(
                 title,
                 textAlign: TextAlign.center,

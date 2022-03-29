@@ -58,6 +58,7 @@ import './welcome_screen/welcome_screen.dart';
 import './notifications/order_cancel/order_can_notif_screen.dart';
 import './notifications/other_notif/other_notif_screen.dart';
 import './notifications/other_notif/other_notif_detail_screen.dart';
+import './registration_forms/registration_forms.dart';
 
 Map<int, Color> myColor = {
   50: Color.fromRGBO(0, 105, 92, .1),
@@ -192,6 +193,7 @@ class MyApp extends StatelessWidget {
         OrderCancelNotifScreen.routeName: (ctx) => OrderCancelNotifScreen(),
         OtherNotificationScreen.routeName: (ctx) => OtherNotificationScreen(),
         OtherNotifDetailScreen.routeName: (ctx) => OtherNotifDetailScreen(),
+        RegistrationForms.routeName: (ctx) => RegistrationForms(),
       },
     );
   }

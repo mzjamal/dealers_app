@@ -288,7 +288,7 @@ class _FiNewNotificationScreenState extends State<FiNewNotificationScreen> {
                             alignment: Alignment.center,
                             child: Center(
                               child: CircularProgressIndicator(
-                                backgroundColor: Colors.black,
+                                color: Colors.black,
                               ),
                             ),
                           );

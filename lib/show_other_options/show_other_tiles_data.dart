@@ -26,12 +26,6 @@ const SHOW_OTHER_TILES = const [
   //   tileColor: MyColors.homeTileColor1,
   //   subTitle: 'انوائس پرنٹ',
   // ),
-  // HomeScreenTile(
-  //   id: 'x2',
-  //   title: 'Annual Tax Certificate',
-  //   tileColor: MyColors.homeTileColor1,
-  //   subTitle: 'ٹیکس سرٹیفکیٹ',
-  // ),
   HomeScreenTile(
     id: 'x1',
     title: 'Sales Profile',
@@ -55,5 +49,11 @@ const SHOW_OTHER_TILES = const [
     title: 'User Guide',
     tileColor: MyColors.homeTileColor1,
     subTitle: 'صارف گائیڈ',
+  ),
+  HomeScreenTile(
+    id: 'x2',
+    title: 'Reg. Forms',
+    tileColor: MyColors.homeTileColor1,
+    subTitle: 'رجسٹریشن فارم',
   ),
 ];
