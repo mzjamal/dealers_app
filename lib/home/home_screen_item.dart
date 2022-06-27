@@ -203,15 +203,35 @@ class HomeScreenItem extends StatelessWidget {
               ),
               width: double.infinity,
               height: 50,
-              child: Text(
-                notifCount,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.red.shade600,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: id == 't5'
+                  ? Globals.overAllNotifications == 'Loading..'
+                      ? Container(
+                          height: 25,
+                          width: 25,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.amberAccent,
+                            ),
+                          ),
+                        )
+                      : Text(
+                          notifCount,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.red.shade600,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                  : Text(
+                      notifCount,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.red.shade600,
+                        //fontWeight: FontWeight.bold,
+                      ),
+                    ),
             ),
           ],
         ),

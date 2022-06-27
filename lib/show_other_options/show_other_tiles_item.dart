@@ -5,11 +5,10 @@ import '../dealer_sale_profile/dealer_sale_screen.dart';
 import '../contact_officers/contact_officers.dart';
 import '../sale_order_report/sale_order_report_screen.dart';
 import '../invoice_report/invoice_report_screen.dart';
-import '../sale_order_print/sale_order_print_screen.dart';
 import '../invoice_print/invoice_print_screen.dart';
-import '../tax_certificate/tax_certificate_screen.dart';
-import '../registration_forms/registration_forms.dart';
 import '../fertilizers/fert_screen.dart';
+import '../oft_reg_forms/reg_forms_screen.dart';
+import '../tax_exemp_cert/tax_tabs_screen.dart';
 
 class ShowOtherTilesItem extends StatelessWidget {
   final String id;
@@ -28,7 +27,7 @@ class ShowOtherTilesItem extends StatelessWidget {
       Navigator.of(ctx).pushNamed(DealerSaleScreen.routeName);
     }
     if (tileID == 'x2') {
-      Navigator.of(ctx).pushNamed(RegistrationForms.routeName);
+      Navigator.of(ctx).pushNamed(RegFormsScreen.routeName);
     }
     if (tileID == 'x3') {
       Navigator.of(ctx).pushNamed(SaleOrderReportScreen.routeName);
@@ -37,7 +36,7 @@ class ShowOtherTilesItem extends StatelessWidget {
       Navigator.of(ctx).pushNamed(InvoiceReportScreen.routeName);
     }
     if (tileID == 'x5') {
-      Navigator.of(ctx).pushNamed(SaleOrderPrintScreen.routeName);
+      Navigator.of(ctx).pushNamed(TaxTabsScreen.routeName);
     }
     if (tileID == 'x6') {
       Navigator.of(ctx).pushNamed(InvoicePrintScreen.routeName);
@@ -88,9 +87,9 @@ class ShowOtherTilesItem extends StatelessWidget {
       );
     }
     if (tileID == 'x5') {
-      //Contact HOSD
+      //Tax Exemption Certificates
       return Icon(
-        Icons.print_outlined,
+        Icons.document_scanner_outlined,
         color: _iconColor,
         size: _iconFontSize,
       );

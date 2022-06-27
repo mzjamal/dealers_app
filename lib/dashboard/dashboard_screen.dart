@@ -150,8 +150,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       alignment: Alignment.center,
                       child: Center(
                         child: CircularProgressIndicator(
-                          backgroundColor: Colors.black,
-                        ),
+                            //backgroundColor: Colors.black,
+                            ),
                       ),
                     ),
                   ],

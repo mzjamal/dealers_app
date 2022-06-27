@@ -9,8 +9,8 @@ class Globals {
   static String globalDesignation = '';
   static String deviceUUID = '';
   //username and password to access services
-  static String serviceUserNameDev = '';
-  static String servicePassDev = '';
+  static String serviceUserNameDev = 'zjamal';
+  static String servicePassDev = 'Helloall@123';
   static String serviceUserName = 'BISRVUSR';
   static String servicePass = 'Initial@1';
   //Device width and heigth
@@ -21,7 +21,7 @@ class Globals {
   //Notification related counters
   static int newOrderNotifications = 0;
   static int newInvoiceNotifications = 0;
-  static int overAllNotifications = 0;
+  static String overAllNotifications = 'Loading..';
 
   //for users without account
   static String vTesting = 'N';

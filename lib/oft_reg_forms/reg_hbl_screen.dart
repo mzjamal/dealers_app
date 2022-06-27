@@ -1,39 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../home/home_tabs_screen.dart';
-import '../colors.dart';
+import '../../colors.dart';
 
-class RegistrationForms extends StatelessWidget {
-  static const routeName = '/regForms';
-  final _mcbForm =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/sonadostmcb.jsp';
+class RegHBLScreen extends StatelessWidget {
+  static const routeName = '/regHblScrn';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SafeArea(
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/images/ffc.png',
-                height: 40,
-                width: 70,
-                //fit: BoxFit.fill,
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Expanded(
-                child: Text(
-                  'Reg. Forms',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/ffc.png',
+              height: 40,
+              width: 70,
+              //fit: BoxFit.fill,
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Expanded(
+              child: Text(
+                'HBL',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 16,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         actions: <Widget>[
           IconButton(
@@ -84,7 +81,7 @@ class RegistrationForms extends StatelessWidget {
                       ),
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Online Funds Transfer Registration Forms',
+                        'Online Funds Transfer Registration',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                         textAlign: TextAlign.justify,
@@ -105,7 +102,7 @@ class RegistrationForms extends StatelessWidget {
                 ),
                 alignment: Alignment.topCenter,
                 child: Text(
-                    'Please download and fill this form of the relevant bank for account activation regarding online funds transfer to FFC.',
+                    'Download and install HBL Konnect app to register for online funds transfer.',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     textAlign: TextAlign.justify),
               ),
@@ -121,7 +118,7 @@ class RegistrationForms extends StatelessWidget {
                 ),
                 alignment: Alignment.topCenter,
                 child: Text(
-                    'Respective bank will provide online funds transfer (OFT) portal to you once these forms alongwith other required information submitted to the bank by FFC.',
+                    'Please tap on one of the following buttons to install HBL Konnect app.',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     textAlign: TextAlign.justify),
               ),
@@ -137,7 +134,7 @@ class RegistrationForms extends StatelessWidget {
                 ),
                 alignment: Alignment.topCenter,
                 child: Text(
-                    'Tap on the relevant button to download the form. Please contact your Head of Sales District for further detail.',
+                    'Please contact your Head of Sales District for further detail.',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     textAlign: TextAlign.justify),
               ),
@@ -148,24 +145,76 @@ class RegistrationForms extends StatelessWidget {
                 padding: const EdgeInsets.only(
                     top: 10, right: 15, left: 15, bottom: 10),
                 child: SizedBox(
-                  height: 40,
+                  height: 50,
                   width: double.infinity,
                   child: Container(
-                    color: Colors.grey.shade600,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Colors.teal.shade100,
+                          Colors.grey.shade500,
+                        ],
+                      ),
+                    ),
                     child: TextButton.icon(
                       onPressed: () {
-                        launch(_mcbForm);
+                        launch(
+                            'https://play.google.com/store/apps/details?id=com.hbl.bbcustomerapp&hl=en');
                       },
                       icon: const Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                        size: 26,
+                        Icons.download,
+                        color: Colors.teal,
+                        size: 34,
                       ),
                       label: const Text(
-                        'Muslim Commercial Bank (MCB)',
+                        'Android Users',
                         style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
+                          fontSize: 20,
+                          color: Colors.black,
+                          //fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      //color: Colors.orangeAccent,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 10, right: 15, left: 15, bottom: 10),
+                child: SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Colors.teal.shade100,
+                          Colors.grey.shade500,
+                        ],
+                      ),
+                    ),
+                    child: TextButton.icon(
+                      onPressed: () {
+                        launch(
+                            'https://apps.apple.com/us/app/konnect-by-hbl/id1404206729');
+                      },
+                      icon: const Icon(
+                        Icons.download,
+                        color: Colors.teal,
+                        size: 34,
+                      ),
+                      label: const Text(
+                        'Apple Users',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
                           //fontWeight: FontWeight.bold,
                         ),
                       ),

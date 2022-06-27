@@ -228,10 +228,19 @@ class _NotificationTilesScreenState extends State<NotificationTilesScreen> {
                           height: 500,
                           width: double.infinity,
                           alignment: Alignment.center,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              backgroundColor: Colors.black,
-                            ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: CircularProgressIndicator(
+                                    //backgroundColor: Colors.black,
+                                    ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text('Please wait...'),
+                            ],
                           ),
                         );
                       } else {

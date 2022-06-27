@@ -39,21 +39,21 @@ class FiNewNotificationItem extends StatelessWidget {
 
   String _notifText() {
     if (fiType == 'OFT' || fiType == 'OTC') {
-      return 'Your IBFT for Rs. ' +
+      return 'Your Online Funds Transfer (OFT) for Rs. ' +
           docAmt +
-          ' from bank ' +
+          ' through ' +
           bank +
-          ' has been successful on ' +
+          ' successfully received on ' +
           fiDate +
-          ' for new sales order.';
+          ' for cash sales order (subject to validation)';
     } else if (fiType == 'ICRC') {
-      return 'Your IBFT for Rs. ' +
+      return 'Your Online Funds Transfer (OFT) for Rs. ' +
           docAmt +
-          ' from bank ' +
+          ' through ' +
           bank +
-          ' has been successful on ' +
+          ' successfully received on ' +
           fiDate +
-          ' for sales order clearing.';
+          ' for sales order clearing (subject to validation)';
     } else {
       return 'Your ' +
           fiType +

@@ -36,7 +36,7 @@ const SHOW_OTHER_TILES = const [
     id: 'x7',
     title: 'Contact Officers',
     tileColor: MyColors.homeTileColor1,
-    subTitle: 'آفیسرز سے رابطہ کریں',
+    subTitle: 'آفیسرز سے رابطہ',
   ),
   HomeScreenTile(
     id: 'x8',
@@ -45,15 +45,21 @@ const SHOW_OTHER_TILES = const [
     subTitle: 'ایف ایف سی کی کھادیں',
   ),
   HomeScreenTile(
+    id: 'x2',
+    title: 'OFT Registration',
+    tileColor: MyColors.homeTileColor1,
+    subTitle: 'او ایف ٹی رجسٹریشن',
+  ),
+  HomeScreenTile(
+    id: 'x5',
+    title: 'Tax Exemp. Cert.',
+    tileColor: MyColors.homeTileColor1,
+    subTitle: 'ٹیکس استثنیٰ سرٹیفکیٹ',
+  ),
+  HomeScreenTile(
     id: 'x9',
     title: 'User Guide',
     tileColor: MyColors.homeTileColor1,
     subTitle: 'صارف گائیڈ',
-  ),
-  HomeScreenTile(
-    id: 'x2',
-    title: 'Reg. Forms',
-    tileColor: MyColors.homeTileColor1,
-    subTitle: 'رجسٹریشن فارم',
   ),
 ];

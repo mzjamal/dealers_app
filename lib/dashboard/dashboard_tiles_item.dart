@@ -49,6 +49,14 @@ class DashboardTilesItem extends StatelessWidget {
     }
   }
 
+  double _fontSize(String _subTitle) {
+    var vfontSize = 40.0;
+    if (_subTitle.length > 7) {
+      vfontSize = 30.0;
+    }
+    return vfontSize;
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -112,7 +120,7 @@ class DashboardTilesItem extends StatelessWidget {
               subTitle,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 40,
+                fontSize: _fontSize(subTitle),
                 color: Colors.black,
               ),
             ),

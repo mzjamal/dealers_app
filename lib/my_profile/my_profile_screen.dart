@@ -204,8 +204,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             alignment: Alignment.center,
                             child: Center(
                               child: CircularProgressIndicator(
-                                backgroundColor: Colors.black,
-                              ),
+                                  //backgroundColor: Colors.black,
+                                  ),
                             ),
                           );
                         } else {

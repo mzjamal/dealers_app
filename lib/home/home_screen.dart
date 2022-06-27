@@ -13,6 +13,7 @@ import '../kashtkaar_desk/crop_documentaries/crop_doc_screen.dart';
 import '../kashtkaar_desk/crop_booklets/crop_booklets_screen.dart';
 import '../kashtkaar_desk/zarai_reports/zarai_report_screen.dart';
 import '../fertilizers/fert_screen.dart';
+import './home_screen_tiles_data.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -21,19 +22,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var _isInit = true;
+  var _notifCount = 0;
   List<HomeScreenItem> homeItems = [];
   final String _urlFFC = 'https://www.ffc.com.pk/company-profile';
 
   final String _urlAgri =
       'https://www.ffc.com.pk/wp-content/uploads/Agri-Experts-Contact-List-2.pdf';
-  final String url =
-      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAHOMETILES_SRV/ZSDAHomeTiles?sap-client=500&\$filter=CUSTCODE eq \'' +
+  // final String url =
+  //     'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAHOMETILES_SRV/ZSDAHomeTiles?sap-client=500&\$filter=CUSTCODE eq \'' +
+  //         Globals.dealerCode +
+  //         '\'&\$format=json';
+  final String urlNotif =
+      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDATOTNOT_SRV/ZSDATotNot?sap-client=200&\$filter=CUSTCODE eq \'' +
           Globals.dealerCode +
           '\'&\$format=json';
 
   @override
   void initState() {
+    Globals.overAllNotifications = 'Loading..';
     super.initState();
+    _setNotificationsData();
   }
 
   @override
@@ -45,9 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.didChangeDependencies();
   }
 
-  Future<List<HomeScreenItem>> _getJsonData() async {
-    final username = Globals.serviceUserName;
-    final password = Globals.servicePass;
+  Future<void> _setNotificationsData() async {
+    final username = Globals.serviceUserNameDev;
+    final password = Globals.servicePassDev;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
@@ -58,24 +66,23 @@ class _HomeScreenState extends State<HomeScreen> {
     };
 
     try {
-      var response = await http.get(url, headers: headers);
+      //print("hellooo");
+      var response = await http.get(urlNotif, headers: headers);
 
       var jsonData = json.decode(response.body) as Map<String, dynamic>;
 
       var vdata = jsonData['d'];
       var xdata = vdata['results'] as List;
-
+      _notifCount = 0;
       xdata.forEach((element) {
-        //if (element['CUSTCODE'] == Globals.dealerCode) {
-        HomeScreenItem homeItem = HomeScreenItem(
-          element['TILECODE'],
-          element['TILETITLE'],
-          element['SUBTITLE'],
-          element['NOTIFCOUNT'],
-        );
-        homeItems.add(homeItem);
-        //}
+        if (element['CUSTCODE'] == Globals.dealerCode) {
+          _notifCount = _notifCount + int.parse(element['NCOUNT']);
+        }
       });
+      //print("Overall Notif:");
+      //print(_notifCount);
+      Globals.overAllNotifications = _notifCount.toString();
+      setState(() {});
     } catch (error) {
       Fluttertoast.showToast(
           msg: error,
@@ -86,8 +93,59 @@ class _HomeScreenState extends State<HomeScreen> {
           textColor: Colors.white,
           fontSize: 16.0);
     }
+  }
 
-    return homeItems;
+  // Future<List<HomeScreenItem>> _getJsonData() async {
+  //   final username = Globals.serviceUserName;
+  //   final password = Globals.servicePass;
+  //   final credentials = '$username:$password';
+  //   final stringToBase64 = utf8.fuse(base64);
+  //   final encodedCredentials = stringToBase64.encode(credentials);
+
+  //   Map<String, String> headers = {
+  //     HttpHeaders.contentTypeHeader: "application/json",
+  //     HttpHeaders.authorizationHeader: "Basic $encodedCredentials",
+  //   };
+
+  //   try {
+  //     var response = await http.get(url, headers: headers);
+
+  //     var jsonData = json.decode(response.body) as Map<String, dynamic>;
+
+  //     var vdata = jsonData['d'];
+  //     var xdata = vdata['results'] as List;
+
+  //     xdata.forEach((element) {
+  //       //if (element['CUSTCODE'] == Globals.dealerCode) {
+  //       HomeScreenItem homeItem = HomeScreenItem(
+  //         element['TILECODE'],
+  //         element['TILETITLE'],
+  //         element['SUBTITLE'],
+  //         element['NOTIFCOUNT'],
+  //       );
+  //       homeItems.add(homeItem);
+  //       //}
+  //     });
+  //   } catch (error) {
+  //     Fluttertoast.showToast(
+  //         msg: error,
+  //         toastLength: Toast.LENGTH_LONG,
+  //         gravity: ToastGravity.CENTER,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: Colors.teal.shade600,
+  //         textColor: Colors.white,
+  //         fontSize: 16.0);
+  //   }
+
+  //   return homeItems;
+  // }
+
+  String _notifCountDisp(String id) {
+    if (id == 't5') {
+      return Globals.overAllNotifications;
+    } else {
+      return '';
+    }
   }
 
   @override
@@ -448,7 +506,12 @@ class _HomeScreenState extends State<HomeScreen> {
     //     ],
     //   ),
     // );
-
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   // do what you want here
+    //   print("inside build...");
+    //   _setNotificationsData();
+    //   //setState(() {});
+    // });
     return Stack(
       children: <Widget>[
         Container(
@@ -485,39 +548,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   left: 10,
                   right: 10,
                 ),
-                child: Center(
-                  child: FutureBuilder(
-                    future: _getJsonData(),
-                    builder: (BuildContext context, AsyncSnapshot snapshot) {
-                      if (snapshot.data == null) {
-                        return Container(
-                          height: 500,
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.black,
-                            ),
-                          ),
-                        );
-                      } else {
-                        return Container(
-                          padding: EdgeInsets.only(
-                            bottom: 10,
-                          ),
-                          child: GridView(
-                              //padding: const EdgeInsets.all(8),
-                              children: homeItems,
-                              gridDelegate:
-                                  SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 200,
-                                childAspectRatio: 3 / 2,
-                                crossAxisSpacing: 15,
-                                mainAxisSpacing: 25,
-                              )),
-                        );
-                      }
-                    },
+                child: GridView(
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    //bottom: 20,
+                  ),
+                  children: homeTiles
+                      .map(
+                        (tileData) => HomeScreenItem(
+                          tileData.id,
+                          tileData.title,
+                          tileData.subTitle,
+                          _notifCountDisp(tileData.id),
+                        ),
+                      )
+                      .toList(),
+                  //Sliver are scrollable areas on screen in Flutter
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 3 / 2,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
                   ),
                 ),
               ),
