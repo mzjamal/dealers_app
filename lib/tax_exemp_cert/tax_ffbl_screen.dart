@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import './tax_screen_item.dart';
+import '../globals.dart';
 
 class TaxFfblScreen extends StatefulWidget {
   static const routeName = '/taxFfblScrn';
@@ -15,13 +16,9 @@ class TaxFfblScreen extends StatefulWidget {
 class _TaxFfblScreenState extends State<TaxFfblScreen> {
   var _isInit = true;
   List<TaxScreenItem> ogItems = [];
-  //NumberFormat format = NumberFormat('#,###,###,###.00');
-
-  // final String url =
-  //     'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZTSALE_SRV/ZTSale?sap-client=500&\$format=json';
 
   final String url =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZVASSTAXCERT_SRV/ZVASSTaxCert?sap-client=200&\$filter=COMP eq \'' +
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZVASSTAXCERT_SRV/ZVASSTaxCert?sap-client=500&\$filter=COMP eq \'' +
           'FFBL' +
           '\'&\$format=json';
   @override
@@ -40,10 +37,8 @@ class _TaxFfblScreenState extends State<TaxFfblScreen> {
   }
 
   Future<List<TaxScreenItem>> _getJsonData() async {
-    //final username = Globals.serviceUserName;
-    //final password = Globals.servicePass;
-    final username = 'zjamal';
-    final password = 'Helloall@123';
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);

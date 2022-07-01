@@ -1,6 +1,5 @@
 import 'home_screen_tile_model.dart';
 import '../colors.dart';
-import '../globals.dart';
 
 var homeTiles = [
   HomeScreenTile(

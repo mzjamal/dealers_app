@@ -28,12 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final String _urlAgri =
       'https://www.ffc.com.pk/wp-content/uploads/Agri-Experts-Contact-List-2.pdf';
-  // final String url =
-  //     'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAHOMETILES_SRV/ZSDAHomeTiles?sap-client=500&\$filter=CUSTCODE eq \'' +
-  //         Globals.dealerCode +
-  //         '\'&\$format=json';
+
   final String urlNotif =
-      'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDATOTNOT_SRV/ZSDATotNot?sap-client=200&\$filter=CUSTCODE eq \'' +
+      'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDATOTNOT_SRV/ZSDATotNot?sap-client=500&\$filter=CUSTCODE eq \'' +
           Globals.dealerCode +
           '\'&\$format=json';
 
@@ -54,8 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _setNotificationsData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);

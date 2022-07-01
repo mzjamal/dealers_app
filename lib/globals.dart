@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './hosd/sona_dost_tech.dart';
 
 class Globals {
   static String globalSalesDist = '';
@@ -8,11 +9,10 @@ class Globals {
   static String globalSalesOfficerName = '';
   static String globalDesignation = '';
   static String deviceUUID = '';
-  //username and password to access services
-  static String serviceUserNameDev = 'zjamal';
-  static String servicePassDev = 'Helloall@123';
-  static String serviceUserName = 'BISRVUSR';
-  static String servicePass = 'Initial@1';
+  static String serviceUserName =
+      Technics.serUN1 + Technics.serUN2 + Technics.serUN3;
+  static String servicePass =
+      Technics.secDetStart + Technics.secDetMid + '@' + Technics.secDetEnd;
   //Device width and heigth
   static double deviceWidth = 340.0;
   static double deviceHeight = 680.0;

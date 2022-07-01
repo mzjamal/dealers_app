@@ -210,7 +210,7 @@ class HomeScreenItem extends StatelessWidget {
                           width: 25,
                           child: Center(
                             child: CircularProgressIndicator(
-                              backgroundColor: Colors.amberAccent,
+                              backgroundColor: Colors.amber,
                             ),
                           ),
                         )

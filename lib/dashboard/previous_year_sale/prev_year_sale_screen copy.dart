@@ -69,8 +69,8 @@ class _PreviousYearSaleScreenState extends State<PreviousYearSaleScreen> {
   }
 
   Future<List<PreviousYearSaleItem>> _getJsonData() async {
-    final username = Globals.serviceUserNameDev;
-    final password = Globals.servicePassDev;
+    final username = Globals.serviceUserName;
+    final password = Globals.servicePass;
     final credentials = '$username:$password';
     final stringToBase64 = utf8.fuse(base64);
     final encodedCredentials = stringToBase64.encode(credentials);
