@@ -10,6 +10,7 @@ import './notifications/notifications_tiles_screen.dart';
 import './contact_officers/contact_officers.dart';
 import './fertilizers/fert_screen.dart';
 import './dealer_sale_profile/dealer_sale_screen.dart';
+import './privacy_policy.dart';
 
 class MainDrawer extends StatelessWidget {
   final url =
@@ -246,9 +247,13 @@ class MainDrawer extends StatelessWidget {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed(AboutApplication.routeName);
               }),
+              buildListTile('Privacy Policy', Icons.privacy_tip, () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamed(PrivayPolicy.routeName);
+              }),
               ListTile(
                 title: Text(
-                  'Sona Dost :: version 2.0.4',
+                  'Sona Dost :: version 2.0.5',
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey.shade600,

@@ -62,6 +62,7 @@ import './oft_reg_forms/registration_forms.dart';
 import './oft_reg_forms/reg_forms_screen.dart';
 import './oft_reg_forms/reg_hbl_screen.dart';
 import './tax_exemp_cert/tax_tabs_screen.dart';
+import './privacy_policy.dart';
 
 Map<int, Color> myColor = {
   50: Color.fromRGBO(0, 105, 92, .1),
@@ -200,6 +201,7 @@ class MyApp extends StatelessWidget {
         RegFormsScreen.routeName: (ctx) => RegFormsScreen(),
         RegHBLScreen.routeName: (ctx) => RegHBLScreen(),
         TaxTabsScreen.routeName: (ctx) => TaxTabsScreen(),
+        PrivayPolicy.routeName: (ctx) => PrivayPolicy(),
       },
     );
   }
