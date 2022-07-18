@@ -65,7 +65,7 @@ class DTPItem extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   height: 25,
-                  width: MediaQuery.of(context).size.width * 0.6,
+                  width: MediaQuery.of(context).size.width * 0.65,
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 10,
@@ -76,7 +76,7 @@ class DTPItem extends StatelessWidget {
                         _productName(prodName),
                         style: TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -85,7 +85,7 @@ class DTPItem extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerRight,
                   height: 25,
-                  width: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.25,
                   child: Text(
                     applicalbeDate,
                     style: TextStyle(fontSize: 16),

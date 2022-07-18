@@ -13,8 +13,7 @@ class InvoicePrintScreen extends StatefulWidget {
 class _InvoicePrintScreenState extends State<InvoicePrintScreen> {
   final _formKey = GlobalKey<FormState>();
   String _invoiceNumber = '';
-  final String _urlInv =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/invprint.jsp?invno=';
+  final String _urlInv = '';
 
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();

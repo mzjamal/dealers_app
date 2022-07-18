@@ -13,9 +13,7 @@ class TaxCertificateScreen extends StatefulWidget {
 class _TaxCertificateScreenState extends State<TaxCertificateScreen> {
   // final _formKey = GlobalKey<FormState>();
   // String _orderNumber = '';
-  final String _urlTax =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/salecertprint.jsp?cust=' +
-          Globals.dealerCode;
+  final String _urlTax = '' + Globals.dealerCode;
 
   // void _trySubmit() {
   //   launch(_urlTax);

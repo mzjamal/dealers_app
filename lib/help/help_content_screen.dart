@@ -146,7 +146,7 @@ class HelpContentScreen extends StatelessWidget {
                           'زیر التواء آرڈرز',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -201,7 +201,7 @@ class HelpContentScreen extends StatelessWidget {
                           'اکاؤنٹ بیلنس',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -255,7 +255,7 @@ class HelpContentScreen extends StatelessWidget {
                           'ڈیلر کے لئے قیمت',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -310,7 +310,7 @@ class HelpContentScreen extends StatelessWidget {
                           'مصنوعات کی قیمتوں کی فہرست',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 20,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -365,7 +365,7 @@ class HelpContentScreen extends StatelessWidget {
                           'سیلز پروفائل',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -474,7 +474,7 @@ class HelpContentScreen extends StatelessWidget {
                           'سیل آرڈر رپورٹ',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -529,7 +529,7 @@ class HelpContentScreen extends StatelessWidget {
                           'انوائس رپورٹ',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -584,7 +584,7 @@ class HelpContentScreen extends StatelessWidget {
                           'کاشتکار ڈيسک ',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),
@@ -638,7 +638,7 @@ class HelpContentScreen extends StatelessWidget {
                           'ایف ایف سی کی کھادیں',
                           textAlign: TextAlign.right,
                           style: TextStyle(
-                            fontSize: 24,
+                            fontSize: 22,
                             fontFamily: 'Urdu',
                           ),
                         ),

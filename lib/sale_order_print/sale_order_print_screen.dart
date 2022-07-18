@@ -14,8 +14,7 @@ class SaleOrderPrintScreen extends StatefulWidget {
 class _SaleOrderPrintScreenState extends State<SaleOrderPrintScreen> {
   final _formKey = GlobalKey<FormState>();
   String _orderNumber = '';
-  final String _urlOrder =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/orderprint.jsp?order=';
+  final String _urlOrder = '';
 
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();

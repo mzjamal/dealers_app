@@ -175,6 +175,14 @@ class NotificationTilesItem extends StatelessWidget {
     }
   }
 
+  double _titleFontSize(String _title) {
+    if (_title.length > 20) {
+      return 16;
+    } else {
+      return 18;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -245,7 +253,7 @@ class NotificationTilesItem extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: _fontSize(),
+                  fontSize: _titleFontSize(title),
                   color: Colors.black,
                 ),
               ),

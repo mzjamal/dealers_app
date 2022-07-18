@@ -39,7 +39,7 @@ class _InvoiceNotifDispScreenState extends State<InvoiceNotifDispScreen> {
   String _dateFormatter(String inDate) {
     var vDay = inDate.substring(0, 2);
     var vMonth = inDate.substring(2, 4);
-    var vYear = inDate.substring(4, 8);
+    var vYear = inDate.substring(6, 8);
     return vDay + '-' + vMonth + '-' + vYear;
   }
 

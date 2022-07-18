@@ -176,7 +176,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 5,
                   ),
                   Text(
-                    'Version 2.0.0',
+                    'Version 2.0.4',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 16,
