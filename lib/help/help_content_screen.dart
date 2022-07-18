@@ -307,7 +307,7 @@ class HelpContentScreen extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         height: 30,
                         child: Text(
-                          'مصنوعات کی قیمتوں کی فہرست',
+                          'مصنوعات کی قیمتیں',
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             fontSize: 20,

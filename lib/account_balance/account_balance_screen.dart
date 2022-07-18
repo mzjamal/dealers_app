@@ -333,7 +333,7 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
                         ),
                         alignment: Alignment.centerRight,
                         height: 20,
-                        width: MediaQuery.of(context).size.width * 0.12,
+                        width: MediaQuery.of(context).size.width * 0.13,
                         child: const Text(
                           'Date',
                           style: TextStyle(
@@ -420,10 +420,10 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
                               height: 40,
                               width: double.infinity,
                               child: Text(
-                                'FFC Prod. Balance (Rs):  ' +
+                                'FFC Product Balance (Rs):  ' +
                                     _thousandSeprator2(_totalDealerBalanceFfc),
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -437,10 +437,10 @@ class _AccountBalanceScreenState extends State<AccountBalanceScreen> {
                               height: 40,
                               width: double.infinity,
                               child: Text(
-                                'FFBL Prod. Balance (Rs):  ' +
+                                'FFBL Product Balance (Rs):  ' +
                                     _thousandSeprator2(_totalDealerBalanceFfbl),
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),

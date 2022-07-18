@@ -72,7 +72,7 @@ class AboutApplication extends StatelessWidget {
                   height: 30,
                 ),
                 const Text(
-                  'Version 2.0.5',
+                  'Version 2.0.6',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 16),
                 ),
@@ -88,7 +88,7 @@ class AboutApplication extends StatelessWidget {
                   height: 20,
                 ),
                 const Text(
-                  'Version 2.0.5 (July, 2022)',
+                  'Version 2.0.6 (July, 2022)',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 16),
                 ),
