@@ -24,7 +24,8 @@ class _InvoiceReportScreenState extends State<InvoiceReportScreen> {
   NumberFormat formatDTP = NumberFormat('#,###,###');
   final _urlReport =
       'https://ffcportal.ffc.com.pk:8881/opendocumentnew/invoicereport.jsp?dealer=' +
-          Globals.dealerCode;
+          Globals.dealerCode +
+          Globals.deviceUUID;
   final String url =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAINVOICES_SRV/ZSDAInvoices?sap-client=500&\$filter=DEALER eq \'' +
           Globals.dealerCode +
@@ -71,7 +72,7 @@ class _InvoiceReportScreenState extends State<InvoiceReportScreen> {
 
       var vdata = jsonData['d'];
       var xdata = vdata['results'] as List;
-
+      //print(_urlReport);
       xdata.forEach((element) {
         //if (element['DEALER'] == Globals.dealerCode) {
         InvoiceItem invItem = InvoiceItem(

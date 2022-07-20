@@ -25,7 +25,8 @@ class _OrdersLast60DaysScreenState extends State<OrdersLast60DaysScreen> {
   NumberFormat formatDTP = NumberFormat('#,###,###');
   final _urlReport =
       'https://ffcportal.ffc.com.pk:8881/opendocumentnew/orders60days.jsp?dealer=' +
-          Globals.dealerCode;
+          Globals.dealerCode +
+          Globals.deviceUUID;
   final String url =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDA60ORDERS_SRV/ZSDA60Orders?sap-client=500&\$filter=DEALER eq \'' +
           Globals.dealerCode +

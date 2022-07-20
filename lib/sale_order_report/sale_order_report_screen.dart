@@ -25,7 +25,8 @@ class _SaleOrderReportScreenState extends State<SaleOrderReportScreen> {
   NumberFormat formatDTP = NumberFormat('#,###,###');
   final _urlReport =
       'https://ffcportal.ffc.com.pk:8881/opendocumentnew/ordersreport.jsp?dealer=' +
-          Globals.dealerCode;
+          Globals.dealerCode +
+          Globals.deviceUUID;
   final String url =
       'https://ffcportal.ffc.com.pk:8856/sap/opu/odata/sap/ZSDAORDERSS_SRV/ZSDAOrderss?sap-client=500&\$filter=DEALER eq \'' +
           Globals.dealerCode +

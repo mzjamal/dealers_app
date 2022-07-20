@@ -21,8 +21,7 @@ class _InvoiceReportScreenState extends State<InvoiceReportScreen> {
   var _isInit = true;
   List<InvoiceItem> invoiceItems = [];
   NumberFormat formatDTP = NumberFormat('#,###,###');
-  final _urlReport =
-      'https://ffcportal.ffc.com.pk:8881/opendocumentnew/invoicereport.jsp';
+  final _urlReport = '';
   final String url =
       'https://ffcportal.ffc.com.pk:8853/sap/opu/odata/sap/ZSDAINVOICES_SRV/ZSDAInvoices?sap-client=200&\$format=json';
 
